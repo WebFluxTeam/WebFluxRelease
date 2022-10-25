@@ -1,0 +1,24 @@
+footer {
+  background-color: #314358;
+  padding: 100px 0;
+  color: rgb(27, 25, 25);
+}
+footer h1 {
+  margin-bottom: 30px;
+  color: #292122;
+  font-weight: 800;
+  font-style: normal;
+}
+footer p {
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+footer h2 {
+  margin-bottom: 10px;
+}
+footer li {
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
