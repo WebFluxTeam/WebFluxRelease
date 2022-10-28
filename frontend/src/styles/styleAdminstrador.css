@@ -7,3 +7,14 @@
 .blockAdmin {
     background-color: black;
 }
+/* Permite centrar la tabla de lista productos*/
+.center {
+    margin: auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+
+th, td{
+    border: 1px solid black; 
+}
