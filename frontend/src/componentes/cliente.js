@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import '../styles/styleCliente.css'
 import Inicio from "./inicio";
-import administrador from "./administrador";
-import datos from '../archivo.json'
+import listProductos from '../listaProductos.json'
 
 
 function Cliente(){
@@ -21,13 +20,16 @@ function Cliente(){
             <th>Descripcion</th>
             <th>Precio</th>
             <th>Stock</th>
+            <th>Comprar</th>
           </tr>
           {
-                      datos.map(producto => (
+                      listProductos.map(producto => (
                         <tr key={producto.id}>
-                        <td>{producto.nombre}</td>
-                        <td>{producto.apellido}</td>
-                        <td>{producto.edad}</td>
+                        <td>{producto.idProducto}</td>
+                        <td>{producto.descripcion}</td>
+                        <td>{producto.precio}</td>
+                        <td>{producto.stock}</td>
+                        <button onClick={comprarUnidad} className="comprar"> Comprar </button>
                     </tr>
                       )) }
         </table>
@@ -35,6 +37,11 @@ function Cliente(){
         setRegistrarProducto(registrarProducto="")
 
     }
+
+    function comprarUnidad(){
+
+    }
+
 
     function agregar(){
 
@@ -55,13 +62,8 @@ function Cliente(){
     // estado agregar carrito
     let [registrarProducto, setRegistrarProducto] = useState("")
 
-    let listProductos = [
-        {"idProducto": 1, "nombre": "informatica1", "descripcion": "libro informatica1", "precio":12, "stock":2},
-        {"idProducto": 2, "nombre": "informatica2", "descripcion": "libro informatica2", "precio":14, "stock":3}, 
-        {"idProducto": 3, "nombre": "informatica3", "descripcion": "libro informatica3", "precio":16, "stock":4},
-        {"idProducto": 4, "nombre": "informatica4", "descripcion": "libro informatica4", "precio":18, "stock":5},
-        {"idProducto": 5, "nombre": "informatica6", "descripcion": "libro informatica6", "precio":20, "stock":6}
-      ]
+    // Arreglo de objetos vacio para ventas
+    let listaVenta = [{}]
 
 
     return(

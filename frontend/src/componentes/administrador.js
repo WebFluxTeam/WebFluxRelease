@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import '../styles/styleAdminstrador.css'
 import Inicio from "./inicio";
+import listaVentas from '../historialVentas.json'
+import listProductos from '../listaProductos.json'
 
 function Admin () {
     let init = <div className="blockAdmin">
@@ -110,7 +112,7 @@ function Admin () {
       /* TRABAJAR DESDE AQUI!!      */
       //////////////////////////////////////
       // Obtener el ultimo valor del arreglo para agregar el id
-      let id = listProductos.length;
+      let id = listProductos.length+1;
       var nombre = document.getElementById("nombre").value;
       var descripcion = document.getElementById("descripcion").value;
       var precio = document.getElementById("precio").value;
@@ -196,14 +198,17 @@ function Admin () {
     let [registrarProducto, setRegistrarProducto] = useState("")
     
     // Lista de ventas
+    /*
     let listaVentas = [
       {"idProducto": 1, "fecha": "2022-10-05", "idVenta": 1,"valor": 123.32},
       {"idProducto": 2, "fecha": "2022-10-06", "idVenta": 2,"valor": 123.32},
       {"idProducto": 3, "fecha": "2022-10-06", "idVenta": 3,"valor": 11000},
       {"idProducto": 4, "fecha": "2022-10-06", "idVenta": 4, "valor": 4.5}
       ]
+    */
     
     // Lista de productos
+    /*
     let listProductos = [
       {"idProducto": 1, "nombre": "informatica1", "descripcion": "libro informatica1", "precio":12, "stock":2},
       {"idProducto": 2, "nombre": "informatica2", "descripcion": "libro informatica2", "precio":14, "stock":3}, 
@@ -211,7 +216,7 @@ function Admin () {
       {"idProducto": 4, "nombre": "informatica4", "descripcion": "libro informatica4", "precio":18, "stock":5},
       {"idProducto": 5, "nombre": "informatica6", "descripcion": "libro informatica6", "precio":20, "stock":6}
     ]
-    
+    */
     return(
         <div>
             {barra}
