@@ -3,6 +3,7 @@ import '../styles/styleAdminstrador.css'
 import Inicio from "./inicio";
 import listaVentas from '../historialVentas.json'
 import listProductos from '../listaProductos.json'
+import * as bootstrap from 'bootstrap'
 
 function Admin () {
     let init = <div className="blockAdmin">
