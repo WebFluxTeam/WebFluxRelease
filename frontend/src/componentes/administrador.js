@@ -25,7 +25,7 @@ function Admin () {
           <tr>
               <th>ID DE PRODUCTO</th>
               <th>IMAGEN</th>
-              <th>DESCRIPCION</th>
+              <th>NOMBRE</th>
               <th>PRECIO</th>
               <th>UNIDADES DISPONIBLES</th>
           </tr>
@@ -34,7 +34,7 @@ function Admin () {
                           <tr key={producto.idProducto}>
                           <td>{producto.idProducto}</td>
                           <td><img className ="picture" src={producto.image}></img></td>
-                          <td>{producto.descripcion}</td>
+                          <td>{producto.nombre}</td>
                           <td>{producto.precio}</td>
                           <td>{producto.stock}</td>
                       </tr>
@@ -108,6 +108,8 @@ function Admin () {
         <form className="rowform">
             <label for="nombre" class="form-label">NOMBRE :</label>    
             <input className ="formedit" type="text" id="nombre" placeholder="Nombre del producto.."/>
+            <label for="imagen" class="form-label">RUTA IMAGEN :</label>    
+            <input className ="formedit" type="text" id="imagen" placeholder="Ingrese la ruta de la imagen.."/>
             <label for="descripcion" class="form-label">DESCRIPCIÓN :</label> 
             <input className ="formedit" type="text" id="descripcion" placeholder="Descripción del producto.."/>
             <label for="precio" class="form-label">PRECIO :</label>
@@ -155,6 +157,8 @@ function Admin () {
           <input type="number" className ="formedit" id="idProducto" min="1" placeholder="identificador del producto.." required/>
           <label for="nombre" class="form-label">NOMBRE :</label>
           <input type="text" className ="formedit" id="nombre" placeholder="Nombre del producto.."/>
+            <label for="imagen" class="form-label">RUTA IMAGEN :</label>    
+            <input className ="formedit" type="text" id="imagen" placeholder="Ingrese la ruta de la imagen.."/>
           <label for="descripcion" class="form-label">DESCRIPCIÓN :</label>
           <input type="text" className ="formedit" id="descripcion" placeholder="descripcion del producto.."/>
           <label for="precio" class="form-label">PRECIO :</label>
@@ -197,7 +201,6 @@ function Admin () {
       mod =
       <div>
       <h1>{"Se ha modificado producto con id: " + result.idProducto}</h1>
-      <h1>{result.nombre}</h1>
       </div>
       }
       setModificar(modificar=mod)

@@ -42,7 +42,7 @@ function Cliente(){
                 <td> {producto.descripcion}</td>
                 <td> {producto.precio}</td>
                 <td> {producto.stock}</td>
-                <button   onClick={ () => comprarUnidad(producto.idProducto) }> REGISTRAR </button>
+                <td><button className=" btn" onClick={ () => comprarUnidad(producto.idProducto) }> REGISTRAR </button></td>
         
          </tr>
 
@@ -60,7 +60,7 @@ function Cliente(){
         
         let  mod =
                 <div>
-                    <h1>{"Se ha agregado el idProducto: " +id}</h1>
+                    <h1>{"SE AGREGO PRODUCTO EXITOSAMENTE... " +id}</h1>
                 </div>
         
 
@@ -68,7 +68,7 @@ function Cliente(){
             auxListProductos[id].stock = 0;
             mod =
                 <div>
-                    <h1>{"Agotado el idProducto: " +id}</h1>
+                    <h1>{"EL PRODUCTO :" +id+ " SE HA AGOTADO "}</h1>
                 </div>
         }
         if (auxListProductos[id].stock > 0){
@@ -79,7 +79,7 @@ function Cliente(){
             let descripcion = ListProductos[objIndex].descripcion;
             let precio = ListProductos[objIndex].precio;
             let cantidad = 1;
-            let producto = {"idProducto": String(idProducto), "descripcion": String(descripcion), "precio": Number(precio), "cantidad": Number(cantidad)}
+            let producto = {"ID PRODUCTO : ": String(idProducto), "DESCRIPCION : ": String(descripcion), "PRECIO : ": Number(precio), "CANTIDAD :": Number(cantidad)}
             listaVenta.push(producto)
         }
 
@@ -121,9 +121,8 @@ function Cliente(){
                         <td>{producto.descripcion}</td>
                         <td>{producto.precio}</td>
                         <td>{producto.precio}</td>
-                        <td></td>
                     </tr>
-                      )) }
+                      )) }  
              <tr>
                 <th></th>
                 <th></th>
@@ -132,8 +131,8 @@ function Cliente(){
                 <th>{"$" + productoTotal}</th>
             </tr>
         </table>
-        <button onClick={ () => comprarF(productoTotal) } className="co"> Finalizar compra </button>
-        <button onClick={cancelarF} className="co"> Cancelar </button>
+            <button className="butt" onClick={ () => comprarF(productoTotal) } > FINALIZAR COMPRA </button> &nbsp;&nbsp;
+            <button className="butt" onClick={cancelarF} > CANCELAR </button>
         </div>  
         setListarProductos(listarProductos="")
         setAgregarCarrito(AgregarProducto=mod);
