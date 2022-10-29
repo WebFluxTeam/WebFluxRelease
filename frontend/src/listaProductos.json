@@ -1,13 +1,15 @@
 [
     {
-        "idProducto": 0, 
-        "nombre": "informatica1", 
-        "descripcion": "libro informatica1", 
-        "precio":12, 
+        "idProducto": 0,
+        "image": "https://images.cdn2.buscalibre.com/fit-in/360x360/7a/12/7a120449c126a978d58f03bc56027fef.jpg",
+        "nombre": "informatica1",
+        "descripcion": "libro informatica1",
+        "precio":12,
         "stock":2
     },
     {
-        "idProducto": 1, 
+        "idProducto": 1,
+        "image": "https://images.cdn2.buscalibre.com/fit-in/360x360/7a/12/7a120449c126a978d58f03bc56027fef.jpg", 
         "nombre": "informatica1", 
         "descripcion": "libro informatica1", 
         "precio":12, 
@@ -15,6 +17,7 @@
     },
     {   
         "idProducto": 2, 
+        "image": "https://images.cdn2.buscalibre.com/fit-in/360x360/7a/12/7a120449c126a978d58f03bc56027fef.jpg",
         "nombre": "informatica2", 
         "descripcion": "libro informatica2", 
         "precio":14, 
@@ -22,6 +25,7 @@
     }, 
     {
         "idProducto": 3, 
+        "image": "https://image.cdn1.buscalibre.com/5b57120917e47364758b4567.__RS360x360__.jpg", 
         "nombre": "informatica3", 
         "descripcion": "libro informatica3", 
         "precio":16, 
@@ -29,6 +33,7 @@
     },
     {
         "idProducto": 4, 
+        "image": "https://m.media-amazon.com/images/I/51BXdIhEe1L.jpg", 
         "nombre": "informatica4", 
         "descripcion": "libro informatica4", 
         "precio":18, 
@@ -36,6 +41,7 @@
     },
     {
         "idProducto": 5, 
+        "image": "https://http2.mlstatic.com/D_NQ_NP_621504-MCO44094061358_112020-O.jpg", 
         "nombre": "informatica6", 
         "descripcion": "libro informatica6", 
         "precio":20, 

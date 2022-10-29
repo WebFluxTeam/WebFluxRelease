@@ -5,11 +5,11 @@ import Admin from "./administrador";
 
 const Inicio = () => {
     
-    let init = <div>
-                    <h1> Página de Inicio </h1>
-                    <button onClick={vistaCliente} className="buttonInicio"> Cliente </button>
-                    <button onClick={vistaAdmin} className="buttonInicio"> Adminitrador </button>
-                </div> 
+    let init =  <div className="blockAdmin">
+                    <label className="labelAdmin" ><small>INIT VIEW</small></label>
+                    <button onClick={vistaCliente} className="btn"> CLIENTE </button>
+                    <button onClick={vistaAdmin} className="btn"> ADMINISTRADOR </button>
+                </div>
 
     let [estado, setEstado] = useState(init)
     
