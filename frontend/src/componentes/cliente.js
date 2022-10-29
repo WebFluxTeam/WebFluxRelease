@@ -5,10 +5,6 @@ import ListProductos from '../listaProductos.json'
 import auxListProductosControls from '../listaProductosControl.json';
 import listaVentas from '../historialVentas.json'
 
-
-
-
-
 function Cliente(){
 
     let init = <div className="blockAdmin">

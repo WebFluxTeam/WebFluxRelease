@@ -1,4 +1,4 @@
-/*#ppal {
+#ppal {
   padding: 74px 0;
   background: linear-gradient(rgb(40, 42, 53, 0.90),rgb(40, 42, 53, 0.90)),url(https://www.w3schools.com/spaces/files/priscilla-du-preez-XkKCui44iM0-unsplash.921aa0c0.jpg);
   background-position-x: 0%, 0%;
@@ -8,7 +8,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50%;
-}*/
+}
 
 body {
     background-color: white;
