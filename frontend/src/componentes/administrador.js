@@ -113,10 +113,10 @@ function Admin () {
       //////////////////////////////////////
       // Obtener el ultimo valor del arreglo para agregar el id
       let id = listProductos.length+1;
-      var nombre = document.getElementById("nombre").value;
-      var descripcion = document.getElementById("descripcion").value;
-      var precio = document.getElementById("precio").value;
-      var stock = document.getElementById("stock").value;
+      let nombre = document.getElementById("nombre").value;
+      let descripcion = document.getElementById("descripcion").value;
+      let precio = document.getElementById("precio").value;
+      let stock = document.getElementById("stock").value;
       let producto = {"idProducto": Number(id), "nombre": String(nombre), "descripcion": String(descripcion), "precio":Number(precio), "stock":Number(stock)}
       listProductos.push(producto);
       let mod=

@@ -1,5 +1,12 @@
 [
     {
+        "idProducto": 0, 
+        "nombre": "informatica1", 
+        "descripcion": "libro informatica1", 
+        "precio":12, 
+        "stock":2
+    },
+    {
         "idProducto": 1, 
         "nombre": "informatica1", 
         "descripcion": "libro informatica1", 
