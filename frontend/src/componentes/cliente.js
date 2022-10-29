@@ -169,7 +169,7 @@ function Cliente(){
         let objeto = {"idVenta":idVenta, "fecha": fecha, "valor":precio }
         listaVentas.push(objeto)
         let mod =
-        <h1>{"se creo venta con id:" + idVenta }</h1>
+        <h1>{"compra exitosa!"}</h1>
         setAgregarCarrito(AgregarProducto=mod);
     }
 
