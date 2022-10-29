@@ -6,10 +6,13 @@ import ListProductos from '../listaProductos.json'
 
 function Cliente(){
 
-    let init = <div className="blockCliente">
-                    <button onClick={listar} className="buttonCliente"> Lista productos </button>
-                    <button onClick={agregarCarritoF} className="buttonCliente"> Carrito </button>
-                    <button onClick={volver} className="buttonCliente"> Volver </button>
+    let init = <div className="blockAdmin">
+                    <label className="labelAdmin"><small> CLIENT VIEW</small></label>
+                    <button onClick={listar} className="btn"> LISTA DE PRODUCTOS </button>
+                    <button onClick={agregarCarritoF} className="btn"> 
+                        <img className ="picture2" src="https://www.xenonfactory.es/wp-content/uploads/2019/01/carrito-compras-desarrollo-tienda-virtual.png" alt=""></img> 
+                    </button>
+                    <button onClick={volver} className="btn"> VOLVER </button>
                 </div>
 
     function listar(){
@@ -18,11 +21,11 @@ function Cliente(){
         let mod =
        <table class="center">
           <tr>
-            <th>IdProducto</th>
-            <th>Descripcion</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Comprar</th>
+            <th>IDENTIFICADOR</th>
+            <th>DESCRIPCION</th>
+            <th>PRECIO</th>
+            <th>UNIDADES DISPONIBLES</th>
+            <th>COMPRAR</th>
           </tr>
           {
             auxListProductos.map(producto => (
@@ -32,7 +35,7 @@ function Cliente(){
                 <td> {producto.descripcion}</td>
                 <td> {producto.precio}</td>
                 <td> {producto.stock}</td>
-                <button   onClick={ () => comprarUnidad(producto.idProducto) }>Registrar   </button>
+                <button   onClick={ () => comprarUnidad(producto.idProducto) }> REGISTRAR </button>
         
          </tr>
          )) }
@@ -45,9 +48,6 @@ function Cliente(){
 
     }
 
-
-
-    
 
     function  comprarUnidad(id){
         
@@ -88,11 +88,11 @@ function Cliente(){
         let mod =
        <table class="center">
           <tr>
-            <th>IdProducto</th>
-            <th>Cantidad</th>
-            <th>Producto</th>
-            <th>Valor Unidad</th>
-            <th>Total</th>
+            <th>ID PRODUCTO</th>
+            <th>CANTIDAD</th>
+            <th>PRODUCTO</th>
+            <th>VALOR UNIDAD</th>
+            <th>TOTAL</th>
           </tr>
           {
                       listaVenta.map(producto => (
