@@ -2,6 +2,11 @@ import React, {useState} from "react";
 import '../styles/styleCliente.css'
 import Inicio from "./inicio";
 import ListProductos from '../listaProductos.json'
+import auxListProductosControls from '../listaProductosControl.json';
+import listaVentas from '../historialVentas.json'
+
+
+
 
 
 function Cliente(){
@@ -13,6 +18,8 @@ function Cliente(){
                 </div>
 
     function listar(){
+
+       
 
 
         let mod =
@@ -35,9 +42,7 @@ function Cliente(){
                 <button   onClick={ () => comprarUnidad(producto.idProducto) }>Registrar   </button>
         
          </tr>
-         )) }
-           
-       
+         )) }   
         </table>
         
         setListarProductos(listarProductos=mod)
@@ -64,15 +69,15 @@ function Cliente(){
                     <h1>{"Agotado el idProducto: " +id}</h1>
                 </div>
         }
-        if (ListProductos[id].stock > 0){
+        if (auxListProductos[id].stock > 0){
             auxListProductos[id].stock = Number(auxListProductos[id].stock-1);
             // buscar el indice del objeto
             let objIndex = ListProductos.findIndex((obj => obj.idProducto === Number(id)));
             let idProducto = ListProductos[objIndex].idProducto;
             let descripcion = ListProductos[objIndex].descripcion;
             let precio = ListProductos[objIndex].precio;
-            let cantidad = 0;
-            let producto = {"idProducto": idProducto, "descripcion":descripcion, "precio": precio, "cantidad":cantidad}
+            let cantidad = 1;
+            let producto = {"idProducto": String(idProducto), "descripcion": String(descripcion), "precio": Number(precio), "cantidad": Number(cantidad)}
             listaVenta.push(producto)
         }
 
@@ -85,7 +90,19 @@ function Cliente(){
 
 
     function agregarCarritoF(){
+        
+        let productoTotal = 0;
+
+        // obtener sumatario el valor total de los productos
+        //for(let i=0; i<listaVenta.length; i++){
+          //productoTotal += listaVenta[i].valor;
+        //}
+        for(let i=1; i<listaVenta.length; i++){
+        productoTotal += listaVenta[i].precio        ;
+        }
+        
         let mod =
+        <div>
        <table class="center">
           <tr>
             <th>IdProducto</th>
@@ -98,13 +115,24 @@ function Cliente(){
                       listaVenta.map(producto => (
                         <tr key={producto.idProducto}>
                         <td>{producto.idProducto}</td>
-                        <td>{producto.stock}</td>
+                        <td>{producto.cantidad}</td>
                         <td>{producto.descripcion}</td>
+                        <td>{producto.precio}</td>
                         <td>{producto.precio}</td>
                         <td></td>
                     </tr>
                       )) }
+             <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Total</th>
+                <th>{"$" + productoTotal}</th>
+            </tr>
         </table>
+        <button onClick={ () => comprarF(productoTotal) } className="co"> Finalizar compra </button>
+        <button onClick={cancelarF} className="co"> Cancelar </button>
+        </div>  
         setListarProductos(listarProductos="")
         setAgregarCarrito(AgregarProducto=mod);
         
@@ -128,17 +156,37 @@ function Cliente(){
 
 
     // Arreglo de objetos vacio para ventas
-    let listaVenta = [{}]
+    var listaVenta = [{}];
 
     // Auxiliar para vista de listas productos para que podamos variar el stock
-    let auxListProductos = ListProductos;
+    //var auxListProductos = ListProductos;
+    var auxListProductos = ListProductos;
+    // Realizar compra
+    function comprarF(productoTotal){
+        let idVenta = listaVentas.length;
+        let fecha = "2022-10-05";
+        let precio = Number(productoTotal);
+        let objeto = {"idVenta":idVenta, "fecha": fecha, "valor":precio }
+        listaVentas.push(objeto)
+        let mod =
+        <h1>{"se creo venta con id:" + idVenta }</h1>
+        setAgregarCarrito(AgregarProducto=mod);
+    }
 
+    // Finalizar compra
+    function cancelarF(id){
+
+        auxListProductos = auxListProductosControls;
+        listaVenta = [{}];
+        setAgregarCarrito(AgregarProducto="");
+        agregarCarritoF();
+    }
 
     return(
         <div >
             {barra}
             {listarProductos}
-            {AgregarProducto}     
+            {AgregarProducto}    
         </div>
     )
 
