@@ -3,44 +3,37 @@ import '../styles/styleAdminstrador.css'
 import Inicio from "./inicio";
 import listaVentas from '../historialVentas.json'
 import listProductos from '../listaProductos.json'
-import * as b from 'bootstrap'
 
 function Admin () {
     let init = <div className="blockAdmin">
-                    <label className="labelAdmin" ><small>ADMIN VIEW</small></label> 
-                    <button  onClick={listarProductosF} className="btn btn-primary"> LISTA DE PRODUCTOS </button>
-                    <button   onClick={registrarProductoF} className="btn btn-primary"> REGISTRAR PRODUCTOS </button>
-                    <button  onClick={modificacion}  className="btn btn-primary"> MODIFICAR PRODUCTOS </button>
-                    <button onClick={visualizacion} className="btn btn-primary"> LISTA DE VENTAS </button>
-                    <button onClick={volver} className="btn btn-primary"> VOLVER </button>
+                    <button  onClick={listarProductosF} className="buttonAdmin"> Lista productos </button>
+                    <button   onClick={registrarProductoF} className="buttonAdmin"> Registrar productos </button>
+                    <button  onClick={modificacion}  className="buttonAdmin"> Modificar productos </button>
+                    <button onClick={visualizacion} className="buttonAdmin"> Listar ventas </button>
+                    <button onClick={volver} className="buttonAdmin"> Volver </button>
                 </div>  
     
 
     // funcion para listar productos
     function listarProductosF(){
       let mod =
-      <div className="container">
-        <label className="labelVentas" ><small><strong>LISTADO DE PRODUCTOS</strong></small></label>
-        <table class="center">
-            <tr>
-                <th>ID DE PRODUCTO</th>
-                <th>IMAGEN</th>
-                <th>DESCRIPCION</th>
-                <th>PRECIO</th>
-                <th>UNIDADES DISPONIBLES</th>
-            </tr>
-            {
-                        listProductos.map(producto => (
-                            <tr key={producto.idProducto}>
-                            <td>{producto.idProducto}</td>
-                            <td><img className ="picture" src={producto.image}></img></td>
-                            <td>{producto.descripcion}</td>
-                            <td>{producto.precio}</td>
-                            <td>{producto.stock}</td>
-                        </tr>
-                        )) }
-            </table>
-        </div>
+       <table class="center">
+          <tr>
+            <th>IdProducto</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
+            <th>Stock</th>
+          </tr>
+          {
+                      listProductos.map(producto => (
+                        <tr key={producto.idProducto}>
+                        <td>{producto.idProducto}</td>
+                        <td>{producto.descripcion}</td>
+                        <td>{producto.precio}</td>
+                        <td>{producto.stock}</td>
+                    </tr>
+                      )) }
+        </table>
          setListar(listar="")
          setModificar(modificar="")
          setRegistrarProducto(registrarProducto="")
@@ -57,29 +50,26 @@ function Admin () {
       }
       
       let mod =
-      <div className="container">
-        <label className="labelVentas" ><small><strong>HISTORICO DE VENTAS</strong></small></label>
-        <table class="center">
+       <table class="center">
+       <tr>
+         <th>Fecha</th>
+         <th>idVenta</th>
+         <th>Valor</th>
+       </tr>
+       {
+                   listaVentas.map(producto => (
+                    <tr key={producto.idVenta}>
+                    <td>{producto.fecha}</td>
+                    <td>{producto.idVenta}</td>
+                    <td>{"$" + producto.valor}</td>
+                </tr>
+                   )) }
         <tr>
-            <th>FECHA</th>
-            <th>ID DE VENTA</th>
-            <th>VALOR</th>
+          <th></th>
+          <th>Total</th>
+          <th>{"$" + productoTotal}</th>
         </tr>
-        {
-                    listaVentas.map(producto => (
-                        <tr key={producto.idVenta}>
-                        <td>{producto.fecha}</td>
-                        <td>{producto.idVenta}</td>
-                        <td>{"$" + producto.valor}</td>
-                    </tr>
-                    )) }
-            <tr>
-            <th></th>
-            <th>TOTAL</th>
-            <th>{"$" + productoTotal}</th>
-            </tr>
-            </table>
-        </div>
+     </table>
        
        setListar(listar=mod)
        setRegistrarProducto(registrarProducto="")
@@ -102,20 +92,13 @@ function Admin () {
     function registrarProductoF (){
       
       let mod = 
-        <div className="divform">
-          <label className="labelVentas" ><small><strong>REGISTRO DE PRODUCTOS</strong></small></label>
-          <form className="rowform">
-              <label for="nombre" class="form-label">NOMBRE :</label>    
-              <input className ="formedit" type="text" id="nombre" placeholder="Nombre del producto.."/>
-              <label for="descripcion" class="form-label">DESCRIPCIÓN :</label> 
-              <input className ="formedit" type="text" id="descripcion" placeholder="Descripción del producto.."/>
-              <label for="precio" class="form-label">PRECIO :</label>
-              <input className ="formedit" type="text" step="0.01" id="precio" placeholder="Costo del producto.."/>
-              <label for="stock" class="form-label">UNIDADES DISPONIBLES :</label>
-              <input className ="formedit" type="number" id="stock" placeholder="Cantidad disponible.."/>
-              <button  className="butt"  onClick={capturarInfoRegistrar}> REGISTRAR </button>
-          </form>
-         </div>
+      <form>
+          nombre: <input type="text" id="nombre"/> <br/>
+          descripcion: <input type="text" id="descripcion"/> <br/>
+          precio: <input type="text" step="0.01" id="precio"/> <br/>
+          stock: <input type="number" id="stock"/> <br/>
+          <button  onClick={capturarInfoRegistrar}> Registrar   </button>
+      </form>
       
       setRegistrarProducto(registrarProducto=mod)
       setModificar (modificar ="")
@@ -130,10 +113,10 @@ function Admin () {
       //////////////////////////////////////
       // Obtener el ultimo valor del arreglo para agregar el id
       let id = listProductos.length+1;
-      var nombre = document.getElementById("nombre").value;
-      var descripcion = document.getElementById("descripcion").value;
-      var precio = document.getElementById("precio").value;
-      var stock = document.getElementById("stock").value;
+      let nombre = document.getElementById("nombre").value;
+      let descripcion = document.getElementById("descripcion").value;
+      let precio = document.getElementById("precio").value;
+      let stock = document.getElementById("stock").value;
       let producto = {"idProducto": Number(id), "nombre": String(nombre), "descripcion": String(descripcion), "precio":Number(precio), "stock":Number(stock)}
       listProductos.push(producto);
       let mod=
@@ -153,22 +136,14 @@ function Admin () {
     // Funcion encargada de modificar un producto que se encuentra creado
     function modificacion () {
       let mod =
-      <div className="divform">
-        <label className="labelVentas" ><small><strong>MODIFICACIÓN DE PRODUCTOS</strong></small></label>
-        <form className="rowform">
-          <label for="idProducto" class="form-label">ID DE PRODUCTO :</label>
-          <input type="number" className ="formedit" id="idProducto" min="1" placeholder="identificador del producto.." required/>
-          <label for="nombre" class="form-label">NOMBRE :</label>
-          <input type="text" className ="formedit" id="nombre" placeholder="Nombre del producto.."/>
-          <label for="descripcion" class="form-label">DESCRIPCIÓN :</label>
-          <input type="text" className ="formedit" id="descripcion" placeholder="descripcion del producto.."/>
-          <label for="precio" class="form-label">PRECIO :</label>
-          <input type="text" className ="formedit" step="0.01" id="precio" placeholder="Precio del producto.."/>
-          <label for="stock" class="form-label">UNIDADES DISPONIBLES :</label>
-          <input type="number" className ="formedit" id="stock" placeholder="Cantidad disponible del producto.."/>
-          <button className="butt" onClick={capturarInfo}> MODIFICAR  </button>
-        </form>
-      </div>
+      <form>
+          idProducto: <input type="number" id="idProducto" min="1" required/> <br/>
+          nombre: <input type="text" id="nombre"/> <br/>
+          descripcion: <input type="text" id="descripcion"/> <br/>
+          precio: <input type="text" step="0.01" id="precio"/> <br/>
+          stock: <input type="number" id="stock"/> <br/>
+          <button  onClick={capturarInfo}> Modificar   </button>
+      </form>
       //setListar(listar="")
       setModificar(modificar=mod)
       setListar(listar="")
@@ -222,26 +197,6 @@ function Admin () {
     // estado de registrar producto
     let [registrarProducto, setRegistrarProducto] = useState("")
     
-    // Lista de ventas
-    /*
-    let listaVentas = [
-      {"idProducto": 1, "fecha": "2022-10-05", "idVenta": 1,"valor": 123.32},
-      {"idProducto": 2, "fecha": "2022-10-06", "idVenta": 2,"valor": 123.32},
-      {"idProducto": 3, "fecha": "2022-10-06", "idVenta": 3,"valor": 11000},
-      {"idProducto": 4, "fecha": "2022-10-06", "idVenta": 4, "valor": 4.5}
-      ]
-    */
-
-    // Lista de productos
-    /*
-    let listProductos = [
-      {"idProducto": 1, "nombre": "informatica1", "descripcion": "libro informatica1", "precio":12, "stock":2},
-      {"idProducto": 2, "nombre": "informatica2", "descripcion": "libro informatica2", "precio":14, "stock":3},
-      {"idProducto": 3, "nombre": "informatica3", "descripcion": "libro informatica3", "precio":16, "stock":4},
-      {"idProducto": 4, "nombre": "informatica4", "descripcion": "libro informatica4", "precio":18, "stock":5},
-      {"idProducto": 5, "nombre": "informatica6", "descripcion": "libro informatica6", "precio":20, "stock":6}
-    ]
-    */
     return(
         <div>
             {barra}
