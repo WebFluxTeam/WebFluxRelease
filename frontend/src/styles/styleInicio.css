@@ -13,3 +13,28 @@ body {
     margin-left: 2%;
     margin-right: 2%;
 }
+
+.btn {
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+    margin: 5px;    
+    border-radius: 10px;
+    font-size: var(--bs-nav-link-font-size);
+    font-weight: var(--bs-nav-link-font-weight);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    display: inline-block;
+  }
+
+  .btn:hover {
+    color: var(--bs-btn-hover-color);
+    background-color: var(--bs-btn-hover-bg);
+    border-color: var(--bs-btn-hover-border-color);
+  }
+
+  .inicioW{
+    background-color: #2c3e50;
+    padding: 1;
+    margin: 0.1%;
+    border-radius: 10px;
+    height: 60px;
+    align-items: center;
+}

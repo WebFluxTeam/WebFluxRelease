@@ -6,21 +6,26 @@ import listProductos from '../listaProductos.json'
 
 function Cliente(){
   
-    let init = <div className="blockCliente">
-                    <button onClick={listar} className="buttonCliente"> Lista productos </button>
-                    <button onClick={agregar} className="buttonCliente"> Carrito </button>
-                    <button onClick={volver} className="buttonCliente"> Volver </button>
+    let init = <div className="blockAdmin">
+                    <label className="labelAdmin"><small> CLIENT VIEW</small></label>
+                    <button onClick={listar} className="btn"> LISTA DE PRODUCTOS </button>
+                    <button onClick={agregar} className="btn"> 
+                        <img className ="picture2" src="https://www.xenonfactory.es/wp-content/uploads/2019/01/carrito-compras-desarrollo-tienda-virtual.png" alt=""></img> 
+                    </button>
+                    <button onClick={volver} className="btn"> VOLVER </button>
+                    
+                    
                 </div>
 
     function listar(){
         let mod =
        <table class="center">
           <tr>
-            <th>IdProducto</th>
-            <th>Descripcion</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Comprar</th>
+            <th>IDENTIFICADOR</th>
+            <th>DESCRIPCION</th>
+            <th>PRECIO</th>
+            <th>UNIDADES DISPONIBLES</th>
+            <th>COMPRAR</th>
           </tr>
           {
                       listProductos.map(producto => (
@@ -29,7 +34,7 @@ function Cliente(){
                         <td>{producto.descripcion}</td>
                         <td>{producto.precio}</td>
                         <td>{producto.stock}</td>
-                        <button onClick={comprarUnidad} className="comprar"> Comprar </button>
+                        <button onClick={comprarUnidad} className="comprar"> COMPRAR </button>
                     </tr>
                       )) }
         </table>
