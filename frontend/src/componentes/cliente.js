@@ -4,6 +4,7 @@ import Inicio from "./inicio";
 import ListProductos from '../listaProductos.json'
 import auxListProductosControls from '../listaProductosControl.json';
 import listaVentas from '../historialVentas.json'
+import _ from "lodash"
 
 function Cliente(){
 
@@ -157,7 +158,8 @@ function Cliente(){
 
     // Auxiliar para vista de listas productos para que podamos variar el stock
     //var auxListProductos = ListProductos;
-    var auxListProductos = ListProductos;
+
+    var auxListProductos =  _.cloneDeep(ListProductos);
     // Realizar compra
     function comprarF(productoTotal){
         let idVenta = listaVentas.length;
@@ -173,7 +175,7 @@ function Cliente(){
     // Finalizar compra
     function cancelarF(id){
 
-        auxListProductos = auxListProductosControls;
+        auxListProductos =  _.cloneDeep(auxListProductosControls);
         listaVenta = [{}];
         setAgregarCarrito(AgregarProducto="");
         agregarCarritoF();
