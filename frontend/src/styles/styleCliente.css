@@ -1,19 +1,56 @@
-.buttonCliente {
-    background-color: black;
-    color: white;
-    font-size: 30px;
-    padding: 1.5%;
-}
-.blockCliente {
-    background-color: black;
+.nav{
+    color: black;
+    list-style: none;
+    text-align: right;
+    Padding: 40px 0 0 0;
 }
 
+.blockCliente {
+    display: inline-block;
+    padding: 0 25px 0 25px;
+}
+
+.buttonCliente {
+    border: 2px solid rgba(19, 19, 19, 0);
+    background-color: white;
+    background: rgba(43, 39, 39, 0);
+    font-size: 25px;
+}
+
+.buttonCliente:hover{
+    color: #a19999;
+}
+
+
 img {
-    width: 100vw;
-    height: 100vh;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    width: flex;
+    height: 50vh;
 }
 
 .objetos {
     margin-top: 15%;
     font-size: 30px;
+}
+
+
+
+.producto1{
+    width: 220px;
+    border: solid 1px #c1c1c1;
+    margin: 20px 10px;
+    padding: 0 5px;
+    float: left;
+}
+
+.producto1.p{
+    font-size: 14px;
+    color: #636363;
+    max-width: 250px;
+}
+
+.productos{
+    width: 1333px;
+    margin: 0 auto;
 }

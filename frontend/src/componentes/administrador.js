@@ -3,12 +3,15 @@ import '../styles/styleAdminstrador.css'
 import Inicio from "./inicio";
 
 function Admin() {
-    let init = <div className="blockAdmin">
-        <button onClick={lista} className="buttonAdmin"> Lista de Productos </button>
-        <button className="buttonAdmin"> Agregar </button>
-        <button className="buttonAdmin"> Editar </button>
-        <button className="buttonAdmin"> Eliminar </button>
-        <button onClick={volver} className="buttonAdmin"> Volver </button>
+    let init = 
+    <div className="nav">
+        <div className="blockAdmin">
+            <button onClick={lista} className="buttonAdmin"> Lista de Productos </button>
+            <button className="buttonAdmin"> Agregar </button>
+            <button className="buttonAdmin"> Editar </button>
+            <button className="buttonAdmin"> Eliminar </button>
+            <button onClick={volver} className="buttonAdmin"> Volver </button>
+        </div>
     </div>
 
     function volver() {
