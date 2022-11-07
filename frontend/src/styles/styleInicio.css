@@ -2,6 +2,9 @@
     font-size: 25px;
     font-family: 'Aboreto', cursive;
 }
+h1{
+    color: white;
+}
 
 .primero {
     display: flex;
@@ -11,17 +14,17 @@
     
     flex-direction: column;
     height: 100vh;
-    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("colaborativo.jpg");
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 
 .buttonInicio {
-    font-size: 15px;
+    font-size: 18px;
     margin-bottom: 20px;
     border-radius: 10px;
-    background-color: rgba(36, 35, 34, 0.349);
+    background-color: rgba(114, 79, 44, 0.349);
     color: white;
     padding: 1.5%;
     margin-left: 2%;
@@ -30,6 +33,6 @@
 }
 
 .buttonInicio:hover {
-    font-size: 18px;
-    background: rgba(0, 0, 0, 0.555);
+    font-size: 25px;
+    background: rgba(158, 84, 23, 0.555);
 }

@@ -1,24 +1,182 @@
-.nav{
+body{
+    background-color: #697d8d9f;
+}
+
+/*  Barra nav  **/
+.nav {
     color: black;
     list-style: none;
     text-align: right;
     Padding: 40px 0 0 0;
 }
 
-.blockAdmin{
+.blockAdmin {
     display: inline-block;
     padding: 0 25px 0 25px;
 }
 
-.buttonAdmin{
+.buttonAdmin {
     border: 2px solid rgba(43, 39, 39, 0);
     background-color: white;
     background: rgba(43, 39, 39, 0);
     font-size: 25px;
 }
 
+/*  Barra nav  **/
 
-.buttonAdmin:hover{
+
+.buttonAdmin:hover {
     color: #a19999;
 }
 
+
+
+/*  Listado de productos  **/
+.container {
+    width: auto;
+    margin: 5%;
+}
+
+.center{
+    padding: 5%;
+}
+.picture {
+    max-width: 250px;
+    max-height: 100px;
+}
+
+.heading {
+    margin-top: 7%;
+    margin-bottom: 2%;
+    font-size: 25px;
+}
+
+/*  Listado de productos  **/
+
+/*  Comparten atributos  **/
+
+/*  LISTA DE VENTAS  **/
+
+.containerV{
+padding: 5%;
+}
+.labelVentas{
+    font-size: 25px;
+}
+
+.center {
+    border-spacing: 0;
+    border-collapse: separate;
+    width: 100%;
+    color: #314351;
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 17px;
+    font-family: "museo-sans",sans-serif;
+  }
+  .center a {
+    color: #5d7083;
+    text-decoration: none;
+  }
+  .center a:hover {
+    color: #1b1c1d;
+    text-decoration: none;
+    background-color: inherit;
+  }
+  .center th, .center td {
+    border: 1px solid #BCBABA;
+    border-top-color: #FFF;
+    border-right: none;
+    padding: 8px 20px 8px 23px;
+    text-align: left;
+    vertical-align: middle;
+    background: #EEE;
+    margin: 0;
+  }
+  
+  .center th {
+    background: #48545e;
+    text-align: left;
+    font-size: 20px;
+    line-height: 25px;
+    padding: 6px 20px 5px 23px;
+    color: #ddedfa;
+    text-shadow: 0px -1px 1px rgba(0, 81, 168, 0.38);
+    border-color: #262a2e;
+    font-weight: 900;
+  }
+  
+  .center th:last-child {
+    border-right: 1px solid #BCBABA;
+    text-align: center;
+  }
+  
+  .center td.last, .center td:last-child {
+    border-right: 1px solid #C2CAD0;
+  }
+  
+  .center .even td, .center tr:nth-child(even) td {
+    background: #E7E7E7;
+  }
+
+
+/* LISTA DE VENTAS  **/
+
+/* RREGISTRAR PRODUCTOS **/
+
+.regist{
+    padding: 5%;
+}
+
+.pat {
+    height: 100%;
+    width: 15%;
+    float: left;
+    margin: auto;
+    margin-left: 7px;
+    margin-right: 0px;
+    border: 1px solid white;
+    border-radius: 9px;
+}
+
+.geety {
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin: auto;
+    margin-top: 10px;
+    position: static;
+    display: flex;
+    color: black;
+    width: 98%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    cursor: pointer;
+}
+
+.set {
+    margin: auto;
+    font-family: helvetica;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    margin-left: 40px;
+}
+
+span {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.butt {
+    background-color: white;
+    border-color: white;
+}
+
+/*.form-label{
+}
+.formedit{
+    border: 2px solid rgba(43, 39, 39, 0.637);
+}*/
+
+
+/* RREGISTRAR PRODUCTOS **/

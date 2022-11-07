@@ -1,0 +1,32 @@
+[
+    {
+        "idProducto": 0,
+        "fecha": "2022-10-05",
+        "idVenta": 1,
+        "valor": 123.32
+    },
+    {
+        "idProducto": 1,
+        "fecha": "2022-10-05", 
+        "idVenta": 1,
+        "valor": 123.32
+    },
+    {
+        "idProducto": 2, 
+        "fecha": "2022-10-06", 
+        "idVenta": 2,
+        "valor": 123.32
+    },
+    {
+        "idProducto": 3, 
+        "fecha": "2022-10-06", 
+        "idVenta": 3,
+        "valor": 11000
+    },
+    {
+        "idProducto": 4, 
+        "fecha": "2022-10-06", 
+        "idVenta": 4, 
+        "valor": 4.5
+    }
+]

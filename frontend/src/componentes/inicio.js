@@ -6,7 +6,7 @@ import Admin from "./administrador";
 const Inicio = () => {
     
     let init = <div className="primero">
-                    <h1> Bienvenidos a Webflux </h1>
+                    <h1 className="titulo1"> Bienvenidos a Webflux </h1>
                     <button onClick={vistaCliente} className="buttonInicio"> Cliente </button>
                     <button onClick={vistaAdmin} className="buttonInicio"> Administrador </button>
                 </div> 
