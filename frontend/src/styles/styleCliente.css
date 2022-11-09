@@ -1,61 +1,276 @@
-.buttonCliente {
-    padding: 8px;
-    margin: 5px;
-}
-.blockCliente {
-    background-color: #2c3e50;
-    padding: 1;
-    margin: 0.1%;
-    border-radius: 10px;
-    height: 60px;
-    align-items: center;
+
+/* CAMBIOS A STYLE NUEVOS  */
+
+.buttonheader{
+  color: white;
+  border: none;
+  padding: 8px;
+  margin: 10px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #2c3e50;
 }
 
+.blockClient {
+  background-color: #2c3e50;
+  overflow: hidden;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 500;
+  box-shadow: 0 5px 10px #091c30;
+}
+
+.labelClient {
+  color: #2c3e50;
+}
+
+
+/* Header */
+/* Header */
+
 img {
-    width: 100vw;
-    height: 100vh;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  width: flex;
+  height: 50vh;
 }
 
 .objetos {
-    margin-top: 15%;
-    font-size: 30px;
+  margin-top: 15%;
+  font-size: 30px;
 }
 
-.picture2{
-    height: 40px;
-    width: 70px;
-    border-radius: 70px;
-    padding: 0px;
-    margin: 0px;
-  }
 
-  .btn2 {
-    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
-    height: 40px;
-    border-radius: 200px;
-    font-size: var(--bs-nav-link-font-size);
-    font-weight: var(--bs-nav-link-font-weight);
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
-    display: inline-block;
-  }
 
-  .btn2:hover {
-    color: var(--bs-btn-hover-color);
-    background-color: var(--bs-btn-hover-bg);
-    border-color: var(--bs-btn-hover-border-color);
-  }
+.producto1 {
+  width: 220px;
+  border: solid 1px #c1c1c1;
+  margin: 20px 10px;
+  padding: 0 5px;
+  float: left;
+  box-shadow: 0 5px 10px #091c30;
+}
 
-  .butt2 {
-    width: 10%;
-    background-color: #2c5048;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .butt2:hover {
-    background-color: #386157;
-  }
+.producto1.p {
+  font-size: 14px;
+  color: #636363;
+  max-width: 250px;
+}
+
+.productos {
+  width: 1333px;
+  margin: 0 auto;
+}
+
+/* CAMBIOS A STYLE NUEVOS  */
+
+.pat {
+  height: 100%;
+  width: 15%;
+  float: left;
+  margin: auto;
+  margin-left: 7px;
+  margin-right: 0px;
+  border: 1px solid white;
+  border-radius: 9px;
+}
+
+.geety {
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 8px;
+  margin: auto;
+  margin-top: 10px;
+  position: static;
+  display: flex;
+  color: black;
+  width: 98%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  cursor: pointer;
+}
+
+.set {
+  margin: auto;
+  font-family: helvetica;
+  justify-content: overflow;
+
+}
+
+span {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.butt {
+  background-color: white;
+  border-color: white;
+}
+
+.center {
+  text-align: center;
+}
+
+
+/* CAMBIOS A STYLE NUEVOS  */
+
+
+/* CAMBIOS A STYLE NUEVOS  */
+
+/* CARRITO PRUEBA  */
+/* CARRITO PRUEBA  */
+
+
+
+.shopping-cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100px;
+  margin-right: 20px;
+  margin-top: 10px;
+  padding: 5px;
+  background: rgba(50, 70, 107, 0);
+}
+
+.shopping-cart-head {
+  background: steelblue;
+  color: white;
+  padding: 5px;
+}
+
+.shopping-cart,
+.shopping-cart-head {
+  border-radius: 5px;
+}
+
+.empty-cart-btn,
+.cart-checkout {
+  display: none;
+}
+
+.empty-cart-btn {
+  margin-bottom: 5px;
+}
+
+.cart-checkout {
+  background: limegreen;
+}
+
+.product-quantity{
+  padding: 10%;
+}
+
+
+/* CARRITO PRUEBA  */
+.Cart {
+  max-width: 800px;
+  display: block;
+  margin: auto;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 800;
+}
+
+.Cart ul {
+  list-style-type: none;
+}
+
+.Cart li {
+  max-width: 400px;
+  padding-top: 10px;
+  margin-bottom: 30px;
+}
+
+.Cart li,
+.Cart button {
+  margin-right: 10px;
+}
+
+.Cart button {
+  cursor: pointer;
+  float: right;
+  border: none;
+  border-radius: 4px;
+  background: #D8D8D8;
+  box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  transform: translatey(-5px);
+}
+
+.cartTotal {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  color: #0e5c2c;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 800;
+  font-size: 48px;
+  background: #a2bb98;
+  border: 10px solid #0e5c2c;
+  box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.2);
+  border-radius: 6px 0 0 0;
+  padding: 10px 20px;
+}
+
+.cartColor {
+  min-width: 90px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.2);
+}
+
+.cartColorQty,
+.cartColorImport {
+  width: 80px;
+  float: right;
+}
+
+
+
+
+
+
+
+
+
+/* CAMBIOS A STYLE NUEVOS  */
+
+/* CAMBIOS A STYLE NUEVOS  */
+.objetos {
+  margin-top: 15%;
+  font-size: 30px;
+}
+
+.picture2 {
+  height: 20px;
+  border-radius: 10px;
+}
+
+.btn2 {
+  padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+  height: 40px;
+  border-radius: 200px;
+  font-size: var(--bs-nav-link-font-size);
+  font-weight: var(--bs-nav-link-font-weight);
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+  display: inline-block;
+}
+
+.btn2:hover {
+  color: var(--bs-btn-hover-color);
+  background-color: var(--bs-btn-hover-bg);
+  border-color: var(--bs-btn-hover-border-color);
+}
+
+.butt2 {
+  width: 10%;
+  background-color: #2c5048;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.butt2:hover {
+  background-color: #386157;
+}

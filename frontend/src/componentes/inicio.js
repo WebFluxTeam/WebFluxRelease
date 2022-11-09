@@ -6,10 +6,10 @@ import Admin from "./administrador";
 
 const Inicio = () => {
     
-    let init =  <div className="blockAdmin" id="ppal">
-                    <label className="labelAdmin" ><small>INIT VIEW</small></label>
-                    <button onClick={vistaCliente} className="btn"> CLIENTE </button>
-                    <button onClick={vistaAdmin} className="btn"> ADMINISTRADOR </button>
+    let init =  <div className="primero" id="ppal">
+                    <h1>Bienvenidos a Webflux</h1>
+                    <button onClick={vistaCliente} className="buttonInicio"> CLIENTE </button>
+                    <button onClick={vistaAdmin} className="buttonInicio"> ADMINISTRADOR </button>
                 </div>
 
     let [estado, setEstado] = useState(init)
