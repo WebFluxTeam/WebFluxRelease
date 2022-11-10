@@ -10,8 +10,8 @@ import _ from "lodash"
 
 
 function Cliente() {
-
-
+     
+    
     let init =
         <div className="blockClient">
             <button className="buttonheader" onClick={inicializacion}> INICIO </button>
@@ -45,8 +45,8 @@ function Cliente() {
                             <div className="producto1" key={producto.idProducto}>
                                 <h1> {producto.idProducto} </h1>
                                 <a> <img className="imagenp" src={producto.image}></img> </a>
-                                <p> {producto.precio}</p>
-                                <p> {producto.stock}</p>
+                                <p> $ {producto.precio}</p>
+                                <p> Stock {producto.stock}</p>
                                 <p><button className=" btn" onClick={() => comprarUnidad(producto.idProducto)}> REGISTRAR </button></p>
 
                             </div>
@@ -178,7 +178,7 @@ function Cliente() {
         setAgregarCarrito(AgregarProducto = mod);
 
     }
-
+    
 
     function volver() {
         setBarra(barra = <Inicio />)
