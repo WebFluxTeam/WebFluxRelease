@@ -8,7 +8,6 @@ import _ from "lodash"
 
 
 
-
 function Cliente() {
      
     
@@ -175,7 +174,8 @@ function Cliente() {
                 <button className="buttc" onClick={cancelarF} > CANCELAR </button>
             </div>
         setListarProductos(listarProductos = "")
-        setAgregarCarrito(AgregarProducto = mod);
+        setAgregarCarrito(AgregarProducto = mod)
+        setInicio(inicio = '')
 
     }
     
@@ -183,6 +183,7 @@ function Cliente() {
     function volver() {
         setBarra(barra = <Inicio />)
         setListarProductos(listarProductos = "")
+        setInicio(inicio = '')
         setAgregarCarrito(AgregarProducto = "")
     }
 

@@ -3,7 +3,6 @@ import '../styles/styleAdminstrador.css'
 import Inicio from "./inicio";
 import listaVentas from '../historialVentas.json'
 import listProductos from '../listaProductos.json'
-import * as b from 'bootstrap'
 
 function Admin() {
   let init = <div className="blockAdmin">
@@ -150,24 +149,41 @@ function Admin() {
   // Funcion encargada de modificar un producto que se encuentra creado
   function modificacion() {
     let mod =
-      <div className="divform">
-        <label className="labelVentas" ><small><strong>MODIFICACIÓN DE PRODUCTOS</strong></small></label>
-        <form className="rowform">
-          <label for="idProducto" class="form-label">ID DE PRODUCTO :</label>
-          <input type="number" className="formedit" id="idProducto" min="1" placeholder="identificador del producto.." required />
-          <label for="nombre" class="form-label">NOMBRE :</label>
-          <input type="text" className="formedit" id="nombre" placeholder="Nombre del producto.." />
-          <label for="imagen" class="form-label">RUTA IMAGEN :</label>
-          <input className="formedit" type="text" id="imagen" placeholder="Ingrese la ruta de la imagen.." />
-          <label for="descripcion" class="form-label">DESCRIPCIÓN :</label>
-          <input type="text" className="formedit" id="descripcion" placeholder="descripcion del producto.." />
-          <label for="precio" class="form-label">PRECIO :</label>
-          <input type="text" className="formedit" step="0.01" id="precio" placeholder="Precio del producto.." />
-          <label for="stock" class="form-label">UNIDADES DISPONIBLES :</label>
-          <input type="number" className="formedit" id="stock" placeholder="Cantidad disponible del producto.." />
-          <button className="butt" onClick={capturarInfo}> MODIFICAR  </button>
-        </form>
-      </div>
+      <>
+        <div id="padre">
+          <div className="divform">
+            <label className="labelVentas" ><small><strong>MODIFICACIÓN DE PRODUCTOS</strong></small></label>
+            <form className="rowform">
+              <label for="idProducto" class="form-label">ID DE PRODUCTO :</label>
+              <input type="number" className="formedit" id="idProducto" min="1" placeholder="identificador del producto.." required />
+              <label for="nombre" class="form-label">NOMBRE :</label>
+              <input type="text" className="formedit" id="nombre" placeholder="Nombre del producto.." />
+              <label for="imagen" class="form-label">RUTA IMAGEN :</label>
+              <input className="formedit" type="text" id="imagen" placeholder="Ingrese la ruta de la imagen.." />
+              <label for="descripcion" class="form-label">DESCRIPCIÓN :</label>
+              <input type="text" className="formedit" id="descripcion" placeholder="descripcion del producto.." />
+              <label for="precio" class="form-label">PRECIO :</label>
+              <input type="text" className="formedit" step="0.01" id="precio" placeholder="Precio del producto.." />
+              <label for="stock" class="form-label">UNIDADES DISPONIBLES :</label>
+              <input type="number" className="formedit" id="stock" placeholder="Cantidad disponible del producto.." />
+              <button className="butt" onClick={capturarInfo}> MODIFICAR  </button>
+            </form>
+          </div>
+          <div className="divform">
+            <div className="heading"></div>
+            <div aling='center' className="producto">
+              <div className="producto">
+                <h2> Nombre Producto </h2>
+                <a> <img className="imagenp2" src='https://images.cdn2.buscalibre.com/fit-in/360x360/7a/12/7a120449c126a978d58f03bc56027fef.jpg'></img> </a>
+                <p> Descripción </p>
+                <p> Precio </p>
+                <p> Stock </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </>
 
     setModificar(modificar = mod)
     setListar(listar = "")

@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import '../styles/styleInicio.css'
 import Cliente from "./cliente";
 import Admin from "./administrador";
-//import Formulario from "../login/signup"
+import Login from './login'
+
 
 const Inicio = () => {
     
@@ -10,6 +11,7 @@ const Inicio = () => {
                     <h1>Bienvenidos a Webflux</h1>
                     <button onClick={vistaCliente} className="buttonInicio"> CLIENTE </button>
                     <button onClick={vistaAdmin} className="buttonInicio"> ADMINISTRADOR </button>
+                    <button onClick={logs} className="buttonInicio"> LOGIN </button>
                 </div>
 
     let [estado, setEstado] = useState(init)
@@ -20,11 +22,9 @@ const Inicio = () => {
     function vistaAdmin(){
         setEstado(estado = <Admin/>)  
     }
-
-    /*function sign (){
-        setEstado(estado = <Formulario />)
-        <!--a><button onClick={sign} className="bodyI"> Signup</button></a-->
-    }*/    
+    function logs(){
+        setEstado(estado = <Login/>)  
+    } 
 
     return(
         <div>

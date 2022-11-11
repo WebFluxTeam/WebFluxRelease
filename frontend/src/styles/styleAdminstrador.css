@@ -116,12 +116,20 @@ tr:nth-child(even) {
 }
 
 .divform {
+  margin: 20px;
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  box-shadow: 0 5px 10px #091c30;
 }
 
 label {
   font-family: arial, sans-serif;
   border-collapse: initial;
 }
+
+
+#padre {
+  display:flex;
+  justify-content: space-between;
+ }
