@@ -9,31 +9,30 @@ import _ from "lodash"
 
 
 function Cliente() {
-     
+    var compras = 0
     
     let init =
         <div className="blockClient">
             <button className="buttonheader" onClick={inicializacion}> INICIO </button>
-            <button className="buttonheader" onClick={listar}> LISTA DE PRODUCTOS </button>
             <button className="buttonheader" onClick={volver}> VOLVER </button>
             <button className="buttonheader" onClick={agregarCarritoF}>
                 <div className="shopping-cart">
                     <div className="shopping-cart-head">
                         <img className="picture2" src="https://www.xenonfactory.es/wp-content/uploads/2019/01/carrito-compras-desarrollo-tienda-virtual.png" alt=""></img>
-                        <span className="product-quantity">0</span>
+                        <span className="product-quantity">{compras}</span>
                     </div>
                     <ul className="shopping-cart-list">
                     </ul>
                     <div className="cart-buttons">
                         <a href="#0" className="button empty-cart-btn">Borrar</a>
-                        <a href="#0" className="button cart-checkout">Comprar <span class="total-price">$0</span></a>
+                        <a href="#0" className="button cart-checkout">Comprar <span class="total-price">$ (compras)</span></a>
                     </div>
                 </div>
             </button>
         </div>
 
     function inicializacion() {
-        let imagen =
+        let mod =
             <div>
                 <img src="https://img.freepik.com/free-vector/shopping-time-banner-with-realistic-map-cart-gift-bags-vector-illustration_548887-120.jpg?w=2000"></img>
                 <div className="heading"> Productos </div>
@@ -55,44 +54,10 @@ function Cliente() {
                 </div>
             </div>
 
-        setInicio(inicio = imagen)
+        setInicio(inicio = mod)
         setListarProductos(listarProductos = '')
         setAgregarCarrito(AgregarProducto = '')
     }
-
-    function listar() {
-
-        let mod =
-            <table class="center">
-                <tr>
-                    <th>IDENTIFICADOR</th>
-                    <th>DESCRIPCION</th>
-                    <th>PRECIO</th>
-                    <th>UNIDADES DISPONIBLES</th>
-                    <th>COMPRAR</th>
-                </tr>
-                {
-                    auxListProductos.map(producto => (
-
-                        <tr key={producto.idProducto}>
-                            <td> {producto.idProducto} </td>
-                            <td> {producto.descripcion}</td>
-                            <td> {producto.precio}</td>
-                            <td> {producto.stock}</td>
-                            <td><button className=" btn" onClick={() => comprarUnidad(producto.idProducto)}> REGISTRAR </button></td>
-
-                        </tr>
-
-                    ))}
-
-            </table>
-
-        setListarProductos(listarProductos = mod)
-        setInicio(inicio = '')
-        setAgregarCarrito(AgregarProducto = '')
-
-    }
-
 
     function comprarUnidad(id) {
 
@@ -176,6 +141,7 @@ function Cliente() {
         setListarProductos(listarProductos = "")
         setAgregarCarrito(AgregarProducto = mod)
         setInicio(inicio = '')
+        return(compras = productoTotal)
 
     }
     

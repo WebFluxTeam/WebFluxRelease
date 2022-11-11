@@ -8,7 +8,6 @@ const Login = () => {
     let init =
         <div>
             <div className="blockCliente">
-
                 <button onClick={iniciars} className="buttonheader"> Login </button>
                 <button onClick={registrar} className="buttonheader"> Signin </button>
                 <button onClick={volver} className="buttonheader"> Volver </button>
@@ -24,13 +23,23 @@ const Login = () => {
 
     function iniciars() {
         let loger =
-            <div class="login">
-                <form class="form-cont">
-                    <h1>Login</h1>
-                    <input type="text" placeholder="username" id="username" />
-                    <input type="password" placeholder="password" id="password" />
-                    <input type="submit" value="Login" />
-                </form>
+            <div class="login-page">
+                <div class="form">
+                    <form class="login-form">
+                        <input type="text && email" placeholder="username or email" />
+                        <input type="password" placeholder="password" />
+                        <button>login</button>
+                        <p class="message">
+                            <label>
+                                <input type="radio" name="regist" value="amarillo" /> User
+                            </label>
+                            <label>
+                                <input type="radio" name="regist" value="amarillo" /> Admin
+                            </label>
+                        </p>
+                    </form>
+
+                </div>
             </div>
 
         setLogear(logear = loger)
@@ -50,9 +59,6 @@ const Login = () => {
                         <input type="text" placeholder="email address" />
                         <input type="password" placeholder="password" />
                         <button>create</button>
-                        <p class="message">
-                            Already registered? <a href="sLogin.html">Sign In</a>
-                        </p>
                     </form>
                 </div>
             </div>

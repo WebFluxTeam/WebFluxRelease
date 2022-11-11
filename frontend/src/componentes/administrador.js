@@ -18,7 +18,7 @@ function Admin() {
   // funcion para listar productos
   function listarProductosF() {
     let mod =
-      <div className="container">
+      <div className="container3">
         <label className="labelVentas" ><small><strong>LISTADO DE PRODUCTOS</strong></small></label>
         <table class="center">
           <tr>
@@ -56,7 +56,7 @@ function Admin() {
     }
 
     let mod =
-      <div className="container">
+      <div className="container3">
         <label className="labelVentas" ><small><strong>HISTORICO DE VENTAS</strong></small></label>
         <table class="center">
           <tr>
