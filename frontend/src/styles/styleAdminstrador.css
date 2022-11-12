@@ -72,6 +72,7 @@ tr:nth-child(even) {
 .btn {
   padding: 8px;
   margin: 5px;
+  border-radius: 15px;
 
 }
 
@@ -133,3 +134,20 @@ label {
   display:flex;
   justify-content: space-between;
  }
+
+
+ .labelpopup{
+  display: initial;
+    font: 1rem 'Fira Sans', sans-serif;
+ }
+
+ .inputpopup{
+  margin: .4rem 0;
+  background-color: #385161;
+}
+
+.popup{
+ text-align: right;
+ margin-right: 41px; 
+
+}

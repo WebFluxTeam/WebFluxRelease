@@ -72,6 +72,22 @@ function Admin() {
     let mod =
       <div className="container3">
         <label className="labelVentas" ><small><strong>HISTORICO DE VENTAS</strong></small></label>
+        <div className="popup">
+          
+          <label class="labelpopup" for="start">Fecha inicial:</label>
+
+          <input id="startDate" className="inputpopup" class="btn btn-info" type="date" id="start" name="trip-start"
+              value="2022-11-12"
+              min="2018-01-01" max="2030-12-31">
+          </input>
+
+          <label class="labelpopup" for="end">Fecha Final:</label>
+          <input id="endDate" className="inputpopup" class="btn btn-info" type="date" id="start" name="trip-start"
+              value="2022-11-12"
+              min="2018-01-01" max="2030-12-31">
+          </input>
+        </div>
+
         <table class="center">
           <tr>
             <th>FECHA</th>
@@ -169,7 +185,9 @@ function Admin() {
             <label className="labelVentas" ><small><strong>MODIFICACIÓN DE PRODUCTOS</strong></small></label>
             <form className="rowform">
               <label for="idProducto" class="form-label">ID DE PRODUCTO :</label>
-              <input type="number" className="formedit" id="idProducto" min="1" placeholder="identificador del producto.." required />
+              <select type="number" className="formedit" id="idProducto" min="1" placeholder="identificador del producto.." required >
+                <option value="default">Seleccione una opción..</option>
+              </select>
               <label for="nombre" class="form-label">NOMBRE :</label>
               <input type="text" className="formedit" id="nombre" placeholder="Nombre del producto.." />
               <label for="imagen" class="form-label">RUTA IMAGEN :</label>

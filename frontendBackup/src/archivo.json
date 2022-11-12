@@ -1,0 +1,20 @@
+[
+    {
+        "id":1018,
+        "nombre":"Jonier",
+        "apellido":"Porras",
+        "edad": 29
+    },
+    {
+        "id":1010,
+        "nombre":"Nicolas",
+        "apellido":"Linares",
+        "edad": 27
+    },
+    {
+        "id":2025,
+        "nombre":"Geraldine",
+        "apellido":"Martinez",
+        "edad": 10
+    }
+]
