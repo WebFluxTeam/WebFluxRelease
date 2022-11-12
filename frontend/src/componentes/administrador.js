@@ -3,6 +3,9 @@ import '../styles/styleAdminstrador.css'
 import Inicio from "./inicio";
 import listaVentas from '../historialVentas.json'
 import listProductos from '../listaProductos.json'
+import axios from 'axios';
+
+
 
 function Admin() {
   let init = <div className="blockAdmin">
@@ -15,8 +18,18 @@ function Admin() {
   </div>
 
 
+  // obtene datos
+  const obtenerDatos = async () => {
+
+    const resultado =  await axios.get("http://localhost:4000/producto/");
+     return resultado.data
+  }
+
+
+
   // funcion para listar productos
-  function listarProductosF() {
+  async function  listarProductosF()  {
+    let resultado2 = await obtenerDatos()
     let mod =
       <div className="container3">
         <label className="labelVentas" ><small><strong>LISTADO DE PRODUCTOS</strong></small></label>
@@ -29,11 +42,12 @@ function Admin() {
             <th>UNIDADES DISPONIBLES</th>
           </tr>
           {
-            listProductos.map(producto => (
+            resultado2.map(producto => (
               <tr key={producto.idProducto}>
                 <td>{producto.idProducto}</td>
-                <td><img className="picture" src={producto.image}></img></td>
+                <td><img className="picture" src={producto.imagen}></img></td>
                 <td>{producto.nombre}</td>
+                <td>{producto.descripcion}</td>
                 <td>{producto.precio}</td>
                 <td>{producto.stock}</td>
               </tr>

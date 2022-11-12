@@ -1,6 +1,6 @@
 [
     {
-        "idProducto": 0,
+        "idProducto": "0",
         "image": "https://images.cdn2.buscalibre.com/fit-in/360x360/4f/74/4f74fa76ce1703384cf9f6694a308d01.jpg",
         "nombre": "Node Js",
         "descripcion": "libro informatica1",
@@ -8,7 +8,7 @@
         "stock":2
     },
     {
-        "idProducto": 1,
+        "idProducto": "1",
         "image": "https://carlosazaustre.es/images/libros-javascript/ejs_gt9otr.png", 
         "nombre": " Javascript", 
         "descripcion": "libro informatica1", 
@@ -16,7 +16,7 @@
         "stock":2
     },
     {   
-        "idProducto": 2, 
+        "idProducto": "2", 
         "image": "https://images.cdn2.buscalibre.com/fit-in/360x360/7a/12/7a120449c126a978d58f03bc56027fef.jpg",
         "nombre": "informatica", 
         "descripcion": "libro informatica2", 
