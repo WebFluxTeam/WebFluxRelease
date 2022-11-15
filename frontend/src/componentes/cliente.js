@@ -5,8 +5,10 @@ import ListProductos from '../listaProductos.json'
 import auxListProductosControls from '../listaProductosControl.json';
 import listaVentas from '../historialVentas.json'
 import _ from "lodash"
+import axios from 'axios';
 
-
+var bandera = false;
+var resultado2 
 
 function Cliente() {
     var compras = 0
@@ -31,21 +33,35 @@ function Cliente() {
             </button>
         </div>
 
-    function inicializacion() {
+
+
+    // obtene datos
+  const obtenerDatos = async () => {
+        if(bandera===false){
+        const resultado =  await axios.get("http://localhost:4000/producto/");
+        resultado2 = resultado.data
+        return resultado.data
+        }
+        return resultado2
+  }
+
+
+  async function inicializacion() {
+    let resultado2 = await obtenerDatos()
         let mod =
             <div>
                 <img src="https://img.freepik.com/free-vector/shopping-time-banner-with-realistic-map-cart-gift-bags-vector-illustration_548887-120.jpg?w=2000"></img>
                 <div className="heading"> Productos </div>
                 <div aling='center' className="productos">
                     <div>{
-                        auxListProductos.map(producto => (
+                        resultado2.map(producto => (
 
                             <div className="producto1" key={producto.idProducto}>
-                                <h1> {producto.idProducto} </h1>
-                                <a> <img className="imagenp" src={producto.image}></img> </a>
+                                
+                                <a> <img className="imagenp" src={producto.imagen}></img> </a>
                                 <p> $ {producto.precio}</p>
                                 <p> Stock {producto.stock}</p>
-                                <p><button className=" btn" onClick={() => comprarUnidad(producto.idProducto)}> REGISTRAR </button></p>
+                                <p><button className=" btn" onClick={() => comprarUnidad(producto.idProducto, producto)}> REGISTRAR </button></p>
 
                             </div>
 
@@ -59,28 +75,30 @@ function Cliente() {
         setAgregarCarrito(AgregarProducto = '')
     }
 
-    function comprarUnidad(id) {
-
+    function comprarUnidad(id, porductoAux) {
+        console.log("Se agrego la unidad")
         let mod =
             <div>
                 <h1>{"SE AGREGO PRODUCTO EXITOSAMENTE... " + id}</h1>
             </div>
 
 
-        if (auxListProductos[id].stock === 0) {
-            auxListProductos[id].stock = 0;
+        if (porductoAux.stock === 0) {
+            porductoAux.stock = 0;
             mod =
                 <div>
                     <h1>{"EL PRODUCTO :" + id + " SE HA AGOTADO "}</h1>
                 </div>
         }
-        if (auxListProductos[id].stock > 0) {
-            auxListProductos[id].stock = Number(auxListProductos[id].stock - 1);
+        if (porductoAux.stock > 0) {
+            console.log("Entra a restar stock" + resultado2.stock)
+            porductoAux.stock = Number(porductoAux.stock - 1);
+            //resultado2[id].stock = porductoAux.stock
             // buscar el indice del objeto
-            let objIndex = ListProductos.findIndex((obj => obj.idProducto === Number(id)));
-            let idProducto = ListProductos[objIndex].idProducto;
-            let descripcion = ListProductos[objIndex].descripcion;
-            let precio = ListProductos[objIndex].precio;
+            //let objIndex = ListProductos.findIndex((obj => obj.idProducto === Number(id)));
+            let idProducto = porductoAux.idProducto;
+            let descripcion = porductoAux.descripcion;
+            let precio = porductoAux.precio;
             let cantidad = 1;
             let producto = { "ID PRODUCTO : ": String(idProducto), "DESCRIPCION : ": String(descripcion), "PRECIO : ": Number(precio), "CANTIDAD :": Number(cantidad) }
             listaVenta.push(producto)
@@ -103,6 +121,7 @@ function Cliente() {
         //for(let i=0; i<listaVenta.length; i++){
         //productoTotal += listaVenta[i].valor;
         //}
+        console.log(listaVenta)
         for (let i = 1; i < listaVenta.length; i++) {
             productoTotal += listaVenta[i].precio;
         }

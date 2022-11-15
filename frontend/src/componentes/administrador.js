@@ -18,14 +18,15 @@ function Admin() {
   </div>
 
 
+
+
+  //***********************************************************************
+  // ***************** VISUALIZAR PRODUCTOS  *****************
   // obtene datos
   const obtenerDatos = async () => {
-
     const resultado =  await axios.get("http://localhost:4000/producto/");
      return resultado.data
   }
-
-
 
   // funcion para listar productos
   async function  listarProductosF()  {
@@ -38,8 +39,10 @@ function Admin() {
             <th>ID DE PRODUCTO</th>
             <th>IMAGEN</th>
             <th>NOMBRE</th>
+            <th>DESCRIPCION</th>
             <th>PRECIO</th>
             <th>UNIDADES DISPONIBLES</th>
+            
           </tr>
           {
             resultado2.map(producto => (
@@ -60,13 +63,21 @@ function Admin() {
     setListarProductos(listarProductos = mod)
   }
 
+//***********************************************************************
+/* ***************** LISTAR VENTAS ******************* */
+const obtenerVentas = async () => {
+  const resultado =  await axios.get("http://localhost:4000/venta/");
+   return resultado.data
+}
 
-  function visualizacion() {
+
+  async function visualizacion() {
+    let listaVentas1 = await obtenerVentas()
     let productoTotal = 0;
 
     // obtener sumatario el valor total de los productos
-    for (let i = 0; i < listaVentas.length; i++) {
-      productoTotal += listaVentas[i].valor;
+    for (let i = 0; i < listaVentas1.length; i++) {
+      productoTotal += listaVentas1[i].precio;
     }
 
     let mod =
@@ -95,11 +106,11 @@ function Admin() {
             <th>VALOR</th>
           </tr>
           {
-            listaVentas.map(producto => (
+            listaVentas1.map(producto => (
               <tr key={producto.idVenta}>
                 <td>{producto.fecha}</td>
                 <td>{producto.idVenta}</td>
-                <td>{"$" + producto.valor}</td>
+                <td>{"$" + producto.precio}</td>
               </tr>
             ))
           }
@@ -119,6 +130,7 @@ function Admin() {
 
   }
 
+  //***********************************************************************
 
   function volver() {
     setBarra(barra = <Inicio />)
@@ -127,10 +139,10 @@ function Admin() {
     setListarProductos(listarProductos = "")
     setRegistrarProducto(registrarProducto = "")
   }
-
+  //***********************************************************************
+  // ***************** REGISTRAR PRODUCTOS  *****************
   // Funcion encargada de crear un producto
   function registrarProductoF() {
-
     let mod =
       <div className="divform">
         <label className="labelVentas" ><small><strong>REGISTRO DE PRODUCTOS</strong></small></label>
@@ -155,25 +167,43 @@ function Admin() {
     setListarProductos(listarProductos = "")
   }
 
+  /*
+    // obtene datos
+  const obtenerDatos = async () => {
+    const resultado =  await axios.get("http://localhost:4000/producto/");
+     return resultado.data
+  }
 
-  function capturarInfoRegistrar() {
+  // funcion para listar productos
+  async function  listarProductosF()  {
+    let resultado2 = await obtenerDatos()
+  */
+  const registrarDatos = async (producto) => {
+    const resultado =  await axios.post("http://localhost:4000/producto/crear", producto);
+     return resultado.data
+  }
+
+  async function capturarInfoRegistrar() {
     ///////////////////////////////////////
     /* TRABAJAR DESDE AQUI!!      */
     //////////////////////////////////////
     // Obtener el ultimo valor del arreglo para agregar el id
-    let id = listProductos.length + 1;
+    //let id = listProductos.length + 1;
     let nombre = document.getElementById("nombre").value;
     let descripcion = document.getElementById("descripcion").value;
     let precio = document.getElementById("precio").value;
     let stock = document.getElementById("stock").value;
-    let producto = { "idProducto": Number(id), "nombre": String(nombre), "descripcion": String(descripcion), "precio": Number(precio), "stock": Number(stock) }
-    listProductos.push(producto);
+    const producto = { "nombre": String(nombre), "descripcion": String(descripcion), "precio": Number(precio), "stock": Number(stock) }
+    registrarDatos(producto)
     let mod =
-      <h1>{"Se ha registrado el producto con id: " + id}</h1>
+      <h1>{"Se ha registrado un producto: " + nombre}</h1>
 
     setRegistrarProducto(registrarProducto = mod)
+    
 
   }
+
+  //***********************************************************************
 
 
   // Funcion encargada de modificar un producto que se encuentra creado

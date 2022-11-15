@@ -26,7 +26,6 @@ router.get('/', listarProducto);
 router.put('/actualizar/:id', actualizarProducto);
 
 // Eliminar producto
-// Actualiza producto
 router.delete('/eliminar/:id', eliminarProducto);
 
 // exportar el router

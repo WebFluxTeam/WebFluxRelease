@@ -17,8 +17,11 @@ app.listen(4000, () =>{
 // Parsea todas la peticciones en formato json
 app.use( express.json());
 
-// Implementacion de middleware
+// Implementacion de middleware para producto
 app.use('/producto', require('./routes/producto'));
+
+// Implementacion de middleware para venta
+app.use('/venta', require('./routes/venta'));
 
 
 
