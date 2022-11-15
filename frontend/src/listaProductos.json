@@ -1,35 +1,48 @@
 [
     {
-        "idProducto": 1, 
-        "nombre": "informatica1", 
+        "idProducto": "0",
+        "image": "https://images.cdn2.buscalibre.com/fit-in/360x360/4f/74/4f74fa76ce1703384cf9f6694a308d01.jpg",
+        "nombre": "Node Js",
+        "descripcion": "libro informatica1",
+        "precio":12,
+        "stock":2
+    },
+    {
+        "idProducto": "1",
+        "image": "https://carlosazaustre.es/images/libros-javascript/ejs_gt9otr.png", 
+        "nombre": " Javascript", 
         "descripcion": "libro informatica1", 
         "precio":12, 
         "stock":2
     },
     {   
-        "idProducto": 2, 
-        "nombre": "informatica2", 
+        "idProducto": "2", 
+        "image": "https://images.cdn2.buscalibre.com/fit-in/360x360/7a/12/7a120449c126a978d58f03bc56027fef.jpg",
+        "nombre": "informatica", 
         "descripcion": "libro informatica2", 
         "precio":14, 
         "stock":3
     }, 
     {
         "idProducto": 3, 
-        "nombre": "informatica3", 
+        "image": "https://image.cdn1.buscalibre.com/5b57120917e47364758b4567.__RS360x360__.jpg", 
+        "nombre": "Springboot", 
         "descripcion": "libro informatica3", 
         "precio":16, 
         "stock":4
     },
     {
         "idProducto": 4, 
-        "nombre": "informatica4", 
+        "image": "https://m.media-amazon.com/images/I/51BXdIhEe1L.jpg", 
+        "nombre": "React.js", 
         "descripcion": "libro informatica4", 
         "precio":18, 
         "stock":5
     },
     {
         "idProducto": 5, 
-        "nombre": "informatica6", 
+        "image": "https://http2.mlstatic.com/D_NQ_NP_621504-MCO44094061358_112020-O.jpg", 
+        "nombre": "Desing Pattern", 
         "descripcion": "libro informatica6", 
         "precio":20, 
         "stock":6

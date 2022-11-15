@@ -1,0 +1,19 @@
+.buttonCliente {
+    background-color: black;
+    color: white;
+    font-size: 30px;
+    padding: 1.5%;
+}
+.blockCliente {
+    background-color: black;
+}
+
+img {
+    width: 100vw;
+    height: 100vh;
+}
+
+.objetos {
+    margin-top: 15%;
+    font-size: 30px;
+}
