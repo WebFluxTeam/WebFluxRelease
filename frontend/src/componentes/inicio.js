@@ -7,11 +7,11 @@ import Login from './login'
 
 const Inicio = () => {
     
-    let init =  <div className="primero" id="ppal">
+    let init =  <div className="blockClient" id="ppal">
                     <h1>Bienvenidos a Webflux</h1>
-                    <button onClick={vistaCliente} className="buttonInicio"> CLIENTE </button>
-                    <button onClick={vistaAdmin} className="buttonInicio"> ADMINISTRADOR </button>
-                    <button onClick={logs} className="buttonInicio"> LOGIN </button>
+                    <button onClick={vistaCliente} className="buttonheader"> CLIENTE </button>
+                    <button onClick={vistaAdmin} className="buttonheader"> ADMINISTRADOR </button>
+                    <button onClick={logs} className="buttonheader"> LOGIN </button>
                 </div>
 
     let [estado, setEstado] = useState(init)
@@ -28,7 +28,7 @@ const Inicio = () => {
 
     return(
         <div>
-            {estado}
+            <Cliente />
         </div>        
     )
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import '../styles/styleCliente.css'
 import Inicio from "./inicio";
+import Admin from "./administrador";
 import ListProductos from '../listaProductos.json'
 import auxListProductosControls from '../listaProductosControl.json';
 import listaVentas from '../historialVentas.json'
@@ -8,46 +9,98 @@ import _ from "lodash"
 import axios from 'axios';
 
 var bandera = false;
-var resultado2 
+var resultado2
 
 function Cliente() {
     var compras = 0
-    
+
     let init =
-        <div className="blockClient">
-            <button className="buttonheader" onClick={inicializacion}> INICIO </button>
-            <button className="buttonheader" onClick={volver}> VOLVER </button>
-            <button className="buttonheader" onClick={agregarCarritoF}>
-                <div className="shopping-cart">
-                    <div className="shopping-cart-head">
-                        <img className="picture2" src="https://www.xenonfactory.es/wp-content/uploads/2019/01/carrito-compras-desarrollo-tienda-virtual.png" alt=""></img>
-                        <span className="product-quantity">{compras}</span>
+        <>
+            <div className="blockClient">
+                <button className="buttonheader" onClick={inicializacion}> INICIO </button>
+                <button onClick={vistaAdmin} className="buttonheader"> ADMINISTRADOR </button>
+                <button className="buttonheader" onClick={agregarCarritoF}>
+                    <div className="shopping-cart">
+                        <div className="shopping-cart-head">
+                            <img className="picture2" src="https://www.xenonfactory.es/wp-content/uploads/2019/01/carrito-compras-desarrollo-tienda-virtual.png" alt=""></img>
+                            <span className="product-quantity">{compras}</span>
+                        </div>
+                        <ul className="shopping-cart-list">
+                        </ul>
+                        <div className="cart-buttons">
+                            <a href="#0" className="button empty-cart-btn">Borrar</a>
+                            <a href="#0" className="button cart-checkout">Comprar <span class="total-price">$ (compras)</span></a>
+                        </div>
                     </div>
-                    <ul className="shopping-cart-list">
-                    </ul>
-                    <div className="cart-buttons">
-                        <a href="#0" className="button empty-cart-btn">Borrar</a>
-                        <a href="#0" className="button cart-checkout">Comprar <span class="total-price">$ (compras)</span></a>
+                </button>
+            </div>
+            <div id="wrapper-content">
+                <p>
+                    <a class="open-seller" href="#popup1">Log in</a>
+                </p>
+                <p>
+                    <a class="open-seller" href="#popup2">Register</a>
+                </p>
+            </div>
+            <div id="popup1" class="overlay-popup">
+                <div class="popup">
+                    
+                        <div class="form">
+                            <form class="login-form">
+                                <a class="close" href="#"><span class="close-popup">x</span></a>
+                                <input type="text && email" placeholder="username or email" />
+                                <input type="password" placeholder="password" />
+                                <button>login</button>
+                                <p class="message">
+                                    <label>
+                                        <input type="radio" name="regist" value="amarillo" /> User
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="regist" value="amarillo" /> Admin
+                                    </label>
+                                </p>
+                            </form>
+
+                        </div>
+                    
+                </div>
+            </div>
+            <div id="popup2" class="overlay-popup">
+                <div class="popup">
+                    <a class="close" href="#"><span class="close-popup">x</span></a>
+                    <div class="box-content">
+                        <div class="form">
+                            <form class="register-form">
+                                <input type="text" placeholder="name" />
+                                <input type="text" placeholder="last name" />
+                                <input type="text" placeholder="ID" />
+                                <input type="text" placeholder="email address" />
+                                <input type="password" placeholder="password" />
+                                <button>create</button>
+                                <p class="message">
+                                </p>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </button>
-        </div>
 
+            </div>
+        </>
 
 
     // obtene datos
-  const obtenerDatos = async () => {
-        if(bandera===false){
-        const resultado =  await axios.get("http://localhost:4000/producto/");
-        resultado2 = resultado.data
-        return resultado.data
+    const obtenerDatos = async () => {
+        if (bandera === false) {
+            const resultado = await axios.get("http://localhost:4000/producto/");
+            resultado2 = resultado.data
+            return resultado.data
         }
         return resultado2
-  }
+    }
 
 
-  async function inicializacion() {
-    let resultado2 = await obtenerDatos()
+    async function inicializacion() {
+        let resultado2 = await obtenerDatos()
         let mod =
             <div>
                 <img src="https://img.freepik.com/free-vector/shopping-time-banner-with-realistic-map-cart-gift-bags-vector-illustration_548887-120.jpg?w=2000"></img>
@@ -57,11 +110,14 @@ function Cliente() {
                         resultado2.map(producto => (
 
                             <div className="producto1" key={producto.idProducto}>
-                                
+
                                 <a> <img className="imagenp" src={producto.imagen}></img> </a>
                                 <p> $ {producto.precio}</p>
                                 <p> Stock {producto.stock}</p>
-                                <p><button className=" btn" onClick={() => comprarUnidad(producto.idProducto, producto)}> REGISTRAR </button></p>
+                                <p>
+                                <button className=" btn3" onClick={() => comprarUnidad(producto.idProducto, producto)}> - </button>
+                                <button className=" btn3" onClick={() => comprarUnidad(producto.idProducto, producto)}> + </button>
+                                </p>
 
                             </div>
 
@@ -144,6 +200,10 @@ function Cliente() {
                                 <td>{producto.descripcion}</td>
                                 <td>{producto.precio}</td>
                                 <td>{producto.precio}</td>
+                                <td>
+                                    <button className=" btn3" onClick={() => comprarUnidad(producto.idProducto, producto)}> - </button>
+                                    <button className=" btn3" onClick={() => comprarUnidad(producto.idProducto, producto)}> + </button>
+                                </td>
                             </tr>
                         ))}
                     <tr>
@@ -160,13 +220,13 @@ function Cliente() {
         setListarProductos(listarProductos = "")
         setAgregarCarrito(AgregarProducto = mod)
         setInicio(inicio = '')
-        return(compras = productoTotal)
+        return (compras = productoTotal)
 
     }
-    
 
-    function volver() {
-        setBarra(barra = <Inicio />)
+
+    function vistaAdmin() {
+        setBarra(barra = <Admin/>)
         setListarProductos(listarProductos = "")
         setInicio(inicio = '')
         setAgregarCarrito(AgregarProducto = "")

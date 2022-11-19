@@ -24,12 +24,12 @@ function Admin() {
   // ***************** VISUALIZAR PRODUCTOS  *****************
   // obtene datos
   const obtenerDatos = async () => {
-    const resultado =  await axios.get("http://localhost:4000/producto/");
-     return resultado.data
+    const resultado = await axios.get("http://localhost:4000/producto/");
+    return resultado.data
   }
 
   // funcion para listar productos
-  async function  listarProductosF()  {
+  async function listarProductosF() {
     let resultado2 = await obtenerDatos()
     let mod =
       <div className="container3">
@@ -42,7 +42,7 @@ function Admin() {
             <th>DESCRIPCION</th>
             <th>PRECIO</th>
             <th>UNIDADES DISPONIBLES</th>
-            
+
           </tr>
           {
             resultado2.map(producto => (
@@ -63,12 +63,12 @@ function Admin() {
     setListarProductos(listarProductos = mod)
   }
 
-//***********************************************************************
-/* ***************** LISTAR VENTAS ******************* */
-const obtenerVentas = async () => {
-  const resultado =  await axios.get("http://localhost:4000/venta/");
-   return resultado.data
-}
+  //***********************************************************************
+  /* ***************** LISTAR VENTAS ******************* */
+  const obtenerVentas = async () => {
+    const resultado = await axios.get("http://localhost:4000/venta/");
+    return resultado.data
+  }
 
 
   async function visualizacion() {
@@ -81,46 +81,77 @@ const obtenerVentas = async () => {
     }
 
     let mod =
-      <div className="container3">
+      <>
+
         <label className="labelVentas" ><small><strong>HISTORICO DE VENTAS</strong></small></label>
-        <div className="popup">
-          
-          <label class="labelpopup" for="start">Fecha inicial:</label>
 
-          <input id="startDate" className="inputpopup" class="btn btn-info" type="date" id="start" name="trip-start"
+        <div class="wrap">
+          <div class="search">
+            <input
+              type="text"
+              class="searchTerm"
+              placeholder="BUSQUEDA POR ID"
+            />
+            <button type="submit" class="searchButton">
+              <img class="imgS" src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-512.png"></img>
+            </button>
+          </div>
+        </div>
+        <div className="container3">
+
+          <div className="popup2">
+
+            <label class="labelpopup" for="start">Fecha inicial:</label>
+
+            <input id="startDate" className="inputpopup" class="btn btn-info" type="date" id="start" name="trip-start"
               value="2022-11-12"
               min="2018-01-01" max="2030-12-31">
-          </input>
+            </input>
 
-          <label class="labelpopup" for="end">Fecha Final:</label>
-          <input id="endDate" className="inputpopup" class="btn btn-info" type="date" id="start" name="trip-start"
+            <label class="labelpopup" for="end">Fecha Final:</label>
+            <input id="endDate" className="inputpopup" class="btn btn-info" type="date" id="start" name="trip-start"
               value="2022-11-12"
               min="2018-01-01" max="2030-12-31">
-          </input>
+            </input>
+          </div>
+
+          <table class="center">
+            <tr>
+              <th>FECHA</th>
+              <th>ID DE VENTA</th>
+              <th>VALOR</th>
+            </tr>
+            {
+              listaVentas1.map(producto => (
+                <tr key={producto.idVenta}>
+                  <td>{producto.fecha}</td>
+                  <td>{producto.idVenta}</td>
+                  <td>{"$" + producto.precio}</td>
+                </tr>
+              ))
+            }
+            <tr>
+              <th></th>
+              <th>TOTAL</th>
+              <th>{"$" + productoTotal}</th>
+            </tr>
+          </table>
         </div>
 
-        <table class="center">
-          <tr>
-            <th>FECHA</th>
-            <th>ID DE VENTA</th>
-            <th>VALOR</th>
-          </tr>
-          {
-            listaVentas1.map(producto => (
-              <tr key={producto.idVenta}>
-                <td>{producto.fecha}</td>
-                <td>{producto.idVenta}</td>
-                <td>{"$" + producto.precio}</td>
-              </tr>
-            ))
-          }
-          <tr>
-            <th></th>
-            <th>TOTAL</th>
-            <th>{"$" + productoTotal}</th>
-          </tr>
-        </table>
-      </div>
+        <div className="divform">
+            <div className="heading"></div>
+            <div aling='center' className="producto">
+              <div className="producto">
+                <h2> 'ID' </h2>
+                <a> </a>
+                <p> Descripción </p>
+                <p>  </p>
+                <p>  </p>
+              </div>
+
+            </div>
+          </div>
+      </>
 
     setListar(listar = mod)
     setRegistrarProducto(registrarProducto = "")
@@ -179,8 +210,8 @@ const obtenerVentas = async () => {
     let resultado2 = await obtenerDatos()
   */
   const registrarDatos = async (producto) => {
-    const resultado =  await axios.post("http://localhost:4000/producto/crear", producto);
-     return resultado.data
+    const resultado = await axios.post("http://localhost:4000/producto/crear", producto);
+    return resultado.data
   }
 
   async function capturarInfoRegistrar() {
@@ -199,7 +230,7 @@ const obtenerVentas = async () => {
       <h1>{"Se ha registrado un producto: " + nombre}</h1>
 
     setRegistrarProducto(registrarProducto = mod)
-    
+
 
   }
 

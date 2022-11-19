@@ -29,6 +29,9 @@
 
 
 /* Header */
+
+
+
 /* Header */
 
 
@@ -91,6 +94,46 @@ tr:nth-child(even) {
 
 /******/
 
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #5f5e5e;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #77857e;
+}
+
+.searchTerm:focus{
+  color: #111111;
+}
+.imgS{
+  width: 25px;
+  height: 21px;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #5f5e5e;
+  background: #5f5e5e;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+
+
 .formedit {
   width: 100%;
   padding: 12px 20px;
@@ -148,6 +191,4 @@ label {
 
 .popup{
  text-align: right;
- margin-right: 41px; 
-
 }
