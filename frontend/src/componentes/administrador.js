@@ -260,6 +260,7 @@ function Admin() {
               <label for="stock" class="form-label">UNIDADES DISPONIBLES :</label>
               <input type="number" className="formedit" id="stock" placeholder="Cantidad disponible del producto.." />
               <button className="butt" onClick={capturarInfo}> MODIFICAR  </button>
+              <button className="butt"> ELIMINAR  </button>
             </form>
           </div>
           <div className="divform">
