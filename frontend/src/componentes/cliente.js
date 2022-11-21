@@ -7,6 +7,7 @@ import auxListProductosControls from '../listaProductosControl.json';
 import listaVentas from '../historialVentas.json'
 import _ from "lodash"
 import axios from 'axios';
+import Login from './login';
 
 var bandera = false;
 var resultado2
@@ -71,12 +72,12 @@ function Cliente() {
                     <div class="box-content">
                         <div class="form">
                             <form class="register-form">
-                                <input type="text" placeholder="name" />
-                                <input type="text" placeholder="last name" />
-                                <input type="text" placeholder="ID" />
-                                <input type="text" placeholder="email address" />
-                                <input type="password" placeholder="password" />
-                                <button>create</button>
+                                <input type="text" id="alias" placeholder="Alias" />
+                                <input type="text" id="name" placeholder="Name" />
+                                <input type="text" id="lastName" placeholder="Last Name" />
+                                <input type="text" id="emailAddress" placeholder="Email Address" />
+                                <input type="password" id="password" placeholder="Password" />
+                                <button onClick={Login.crearUsuario}>create</button>
                                 <p class="message">
                                 </p>
                             </form>
