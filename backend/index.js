@@ -1,8 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 
-
-
 // Crear servidor de express
 const app = express();
 
@@ -23,6 +21,8 @@ app.use('/producto', require('./routes/producto'));
 // Implementacion de middleware para venta
 app.use('/venta', require('./routes/venta'));
 
+// User Middleware Implementation
+app.use('/user', require('./routes/user'));
 
 
 
