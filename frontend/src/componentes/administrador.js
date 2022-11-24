@@ -88,11 +88,12 @@ function Admin() {
         <div class="wrap">
           <div class="search">
             <input
+              id = "idVenta"
               type="text"
               class="searchTerm"
               placeholder="BUSQUEDA POR ID"
             />
-            <button type="submit" class="searchButton">
+            <button type="submit" class="searchButton" onClick={buscarId}>
               <img class="imgS" src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-512.png"></img>
             </button>
           </div>
@@ -113,6 +114,7 @@ function Admin() {
               value="2022-11-12"
               min="2018-01-01" max="2030-12-31">
             </input>
+            <button className="butt" onClick={buscarVentas}> Bucar  </button>
           </div>
 
           <table class="center">
@@ -161,6 +163,51 @@ function Admin() {
 
   }
 
+
+
+
+
+
+  async function buscarId(){
+    let idVenta = document.getElementById("idVenta").value;
+    let respuesta = await traerVenta(idVenta);
+    alert(`fecha: ${respuesta.fecha}\nprecio: ${respuesta.precio}\nproducto: ${respuesta.producto[0].nombre}`)
+  }
+
+  // traer venta
+  const traerVenta = async (idVenta) => {
+    let url = "http://localhost:4000/venta/" +idVenta
+    //alert(url);
+    const resultado = await axios.get(url);
+    return resultado.data
+  }
+
+
+
+  // REVISAR 
+  function buscarVentas(){
+    let fechaInicial = document.getElementById("startDate").value;
+    let fechaFinal = document.getElementById("endDate").value;
+    console.log("fecha inicial" + fechaInicial)
+    console.log("fecha final: " + fechaFinal)
+    traerVentas(fechaInicial, fechaFinal)
+  }
+
+
+  // Actualizar producto
+  const traerVentas = async (fechaInicial, fechaFinal) => {
+    let url = "http://localhost:4000/venta/" +fechaInicial +"/"+fechaFinal
+    const resultado = await axios.get(url);
+    return resultado.data
+  }
+  // REVISAR...........
+
+
+
+
+
+
+
   //***********************************************************************
 
   function volver() {
@@ -198,28 +245,12 @@ function Admin() {
     setListarProductos(listarProductos = "")
   }
 
-  /*
-    // obtene datos
-  const obtenerDatos = async () => {
-    const resultado =  await axios.get("http://localhost:4000/producto/");
-     return resultado.data
-  }
-
-  // funcion para listar productos
-  async function  listarProductosF()  {
-    let resultado2 = await obtenerDatos()
-  */
   const registrarDatos = async (producto) => {
     const resultado = await axios.post("http://localhost:4000/producto/crear", producto);
     return resultado.data
   }
 
   async function capturarInfoRegistrar() {
-    ///////////////////////////////////////
-    /* TRABAJAR DESDE AQUI!!      */
-    //////////////////////////////////////
-    // Obtener el ultimo valor del arreglo para agregar el id
-    //let id = listProductos.length + 1;
     let nombre = document.getElementById("nombre").value;
     let descripcion = document.getElementById("descripcion").value;
     let precio = document.getElementById("precio").value;
@@ -230,19 +261,13 @@ function Admin() {
       <h1>{"Se ha registrado un producto: " + nombre}</h1>
 
     setRegistrarProducto(registrarProducto = mod)
-
-
   }
-
-  //***********************************************************************
 
 
   // Funcion encargada de modificar un producto que se encuentra creado
   async function modificacion() {
     let resultado2 = await obtenerDatos()
     console.log("resultado", resultado2)
-
-
 
     let mod =
       <>
@@ -270,7 +295,7 @@ function Admin() {
               <label for="stock" class="form-label">UNIDADES DISPONIBLES :</label>
               <input type="number" className="formedit" id="stock" placeholder="Cantidad disponible del producto.." />
               <button className="butt" onClick={capturarInfo}> MODIFICAR  </button>
-              <button className="butt"> ELIMINAR  </button>
+              <button className="butt" onClick={eliminarInfo}> ELIMINAR  </button>
             </form>
           </div>
           <div className="divform">
@@ -319,7 +344,9 @@ function Admin() {
 
   // Actualizar producto
   const actualizarDatos = async (producto) => {
-    const resultado = await axios.post("http://localhost:4000/producto/actualizar/", producto);
+    console.log(producto.idProducto)
+    let url = "http://localhost:4000/producto/actualizar/" + producto.idProducto
+    const resultado = await axios.put(url, producto);
     return resultado.data
   }
 
@@ -337,11 +364,37 @@ function Admin() {
     let resultado = await actualizarDatos(objeto)
     // buscar producto
     console.log(resultado)
-    let mod = <h1>{"Se ha modificado producto con id: " }</h1>
+    //let mod = <h1>{"Se ha modificado producto exitosamente "}</h1>
+    alert("se ha modificado exitosamente")
     // validar si el producto con ese id existe
-    
-    setModificar(modificar = mod)
+    setModificar(modificar = <h1>se ha eliminado el producto</h1>)
+   
   }
+
+ 
+
+  // Eliminar producto
+  // Actualizar producto
+  const eliminarDatos = async (id) => {
+    //let url = "localhost:4000/producto/eliminar/" + id
+    const url = "http://localhost:4000/producto/eliminar/" + id
+    console.log(url)
+    const resultado = await axios.delete(url);
+    return resultado.data
+  }
+
+  async function eliminarInfo(){
+    var idProducto = document.getElementById("idProducto").value;
+    eliminarDatos(idProducto)
+    //let mod = <h1>{"Se ha eliminado producto exitosamente "}</h1>
+    alert("se ha eliminado exitosamente")
+    // validar si el producto con ese id existe
+    //setModificar(modificar = mod)
+    setModificar(modificar = <h1>se ha eliminado el producto</h1>)
+  }
+
+
+
 
 
 
