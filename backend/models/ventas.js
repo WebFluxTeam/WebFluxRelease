@@ -9,6 +9,15 @@ const ventaSchema = Schema ({
     precio: {
         type: Number,
         require: true
+    },
+    producto:{
+        type: [{
+            imagen : String,
+            nombre : String,
+            precio: Number,
+            stock : Number
+            }],
+        require: true
     }
 })
 

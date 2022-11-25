@@ -89,11 +89,12 @@ function Admin() {
         <div class="wrap">
           <div class="search">
             <input
+              id = "idVenta"
               type="text"
               class="searchTerm"
               placeholder="BUSQUEDA POR ID"
             />
-            <button type="submit" class="searchButton">
+            <button type="submit" class="searchButton" onClick={buscarId}>
               <img class="imgS" src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/search-512.png"></img>
             </button>
           </div>
@@ -114,6 +115,7 @@ function Admin() {
               value="2022-11-12"
               min="2018-01-01" max="2030-12-31">
             </input>
+            <button className="butt" onClick={buscarVentas}> Bucar  </button>
           </div>
 
           <table class="center">
@@ -162,6 +164,51 @@ function Admin() {
 
   }
 
+
+
+
+
+
+  async function buscarId(){
+    let idVenta = document.getElementById("idVenta").value;
+    let respuesta = await traerVenta(idVenta);
+    alert(`fecha: ${respuesta.fecha}\nprecio: ${respuesta.precio}\nproducto: ${respuesta.producto[0].nombre}`)
+  }
+
+  // traer venta
+  const traerVenta = async (idVenta) => {
+    let url = "http://localhost:4000/venta/" +idVenta
+    //alert(url);
+    const resultado = await axios.get(url);
+    return resultado.data
+  }
+
+
+
+  // REVISAR 
+  function buscarVentas(){
+    let fechaInicial = document.getElementById("startDate").value;
+    let fechaFinal = document.getElementById("endDate").value;
+    console.log("fecha inicial" + fechaInicial)
+    console.log("fecha final: " + fechaFinal)
+    traerVentas(fechaInicial, fechaFinal)
+  }
+
+
+  // Actualizar producto
+  const traerVentas = async (fechaInicial, fechaFinal) => {
+    let url = "http://localhost:4000/venta/" +fechaInicial +"/"+fechaFinal
+    const resultado = await axios.get(url);
+    return resultado.data
+  }
+  // REVISAR...........
+
+
+
+
+
+
+
   //***********************************************************************
 
   function volver() {
@@ -199,28 +246,12 @@ function Admin() {
     setListarProductos(listarProductos = "")
   }
 
-  /*
-    // obtene datos
-  const obtenerDatos = async () => {
-    const resultado =  await axios.get("http://localhost:4000/producto/");
-     return resultado.data
-  }
-
-  // funcion para listar productos
-  async function  listarProductosF()  {
-    let resultado2 = await obtenerDatos()
-  */
   const registrarDatos = async (producto) => {
     const resultado = await axios.post("http://localhost:4000/producto/crear", producto);
     return resultado.data
   }
 
   async function capturarInfoRegistrar() {
-    ///////////////////////////////////////
-    /* TRABAJAR DESDE AQUI!!      */
-    //////////////////////////////////////
-    // Obtener el ultimo valor del arreglo para agregar el id
-    //let id = listProductos.length + 1;
     let nombre = document.getElementById("nombre").value;
     let descripcion = document.getElementById("descripcion").value;
     let precio = document.getElementById("precio").value;
@@ -231,15 +262,14 @@ function Admin() {
       <h1>{"Se ha registrado un producto: " + nombre}</h1>
 
     setRegistrarProducto(registrarProducto = mod)
-
-
   }
-
-  //***********************************************************************
 
 
   // Funcion encargada de modificar un producto que se encuentra creado
-  function modificacion() {
+  async function modificacion() {
+    let resultado2 = await obtenerDatos()
+    console.log("resultado", resultado2)
+
     let mod =
       <>
         <div id="padre">
@@ -247,11 +277,16 @@ function Admin() {
             <label className="labelVentas" ><small><strong>MODIFICACIÓN DE PRODUCTOS</strong></small></label>
             <form className="rowform">
               <label for="idProducto" class="form-label">ID DE PRODUCTO :</label>
-              <select type="number" className="formedit" id="idProducto" min="1" placeholder="identificador del producto.." required >
-                <option value="default">Seleccione una opción..</option>
+              <select type="number" className="formedit" id="idProducto" min="1" placeholder="identificador del producto.."  onChange={() => actualizarCampos(resultado2)} required>
+                {
+                resultado2.map(producto => (
+                  <option key={producto.idProducto}>
+                  {producto.idProducto}
+                  </option>
+              ))}
               </select>
               <label for="nombre" class="form-label">NOMBRE :</label>
-              <input type="text" className="formedit" id="nombre" placeholder="Nombre del producto.." />
+              <input type="text" className="formedit" id="nombre" placeholder="Nombre del producto.." defaultValue=""/> 
               <label for="imagen" class="form-label">RUTA IMAGEN :</label>
               <input className="formedit" type="text" id="imagen" placeholder="Ingrese la ruta de la imagen.." />
               <label for="descripcion" class="form-label">DESCRIPCIÓN :</label>
@@ -261,7 +296,7 @@ function Admin() {
               <label for="stock" class="form-label">UNIDADES DISPONIBLES :</label>
               <input type="number" className="formedit" id="stock" placeholder="Cantidad disponible del producto.." />
               <button className="butt" onClick={capturarInfo}> MODIFICAR  </button>
-              <button className="butt"> ELIMINAR  </button>
+              <button className="butt" onClick={eliminarInfo}> ELIMINAR  </button>
             </form>
           </div>
           <div className="divform">
@@ -269,10 +304,7 @@ function Admin() {
             <div aling='center' className="producto">
               <div className="producto">
                 <h2> Nombre Producto </h2>
-                <a> <img className="imagenp2" src='https://images.cdn2.buscalibre.com/fit-in/360x360/7a/12/7a120449c126a978d58f03bc56027fef.jpg'></img> </a>
-                <p> Descripción </p>
-                <p> Precio </p>
-                <p> Stock </p>
+                <a> <img id="imagen2" ></img> </a>
               </div>
 
             </div>
@@ -286,36 +318,84 @@ function Admin() {
     setListarProductos(listarProductos = "")
   }
 
+  // Actualizar campos
+  function actualizarCampos(resultado2){
+    var e = document.getElementById("idProducto");
+    //let objetoAuxiliar = {... resultado2}
+    // obtener posicion del producto
+    let objIndex = resultado2.findIndex((obj => obj.idProducto === String(e.value)));
+    // capturar valores
+    let nombre = resultado2[objIndex].nombre
+    let imagen = resultado2[objIndex].imagen
+    let descripcion = resultado2[objIndex].descripcion
+    let precio = resultado2[objIndex].precio
+    let stock = resultado2[objIndex].stock
+    // setiar valores
+    document.getElementById("nombre").value = nombre
+    document.getElementById("imagen").value = imagen
+    //document.getElementById("imagenp2").value = imagen
+    document.getElementById("descripcion").value = descripcion
+    document.getElementById("precio").value = precio
+    document.getElementById("stock").value = stock
+    //nombre.target.setAttribute("value",nombre);
+    document.getElementById("imagen2").src=imagen;
 
+  }
+
+
+  // Actualizar producto
+  const actualizarDatos = async (producto) => {
+    console.log(producto.idProducto)
+    let url = "http://localhost:4000/producto/actualizar/" + producto.idProducto
+    const resultado = await axios.put(url, producto);
+    return resultado.data
+  }
 
   // capturar informacion de formulario
-  function capturarInfo() {
+  async function capturarInfo() {
     // Capturar inforacion de formulario
+    //let resultado = await actualizarDatos()
     var idProducto = document.getElementById("idProducto").value;
     var nombre = document.getElementById("nombre").value;
     var descripcion = document.getElementById("descripcion").value;
+    var imagen = document.getElementById("descripcion").imagen;
     var precio = document.getElementById("precio").value;
     var stock = document.getElementById("stock").value;
-
+    let objeto = {"idProducto": idProducto, "nombre": nombre, "descripcion": descripcion,  "imagen": imagen, "precio": precio, "stock": stock}
+    let resultado = await actualizarDatos(objeto)
     // buscar producto
-    var result = listProductos.find(item => item.idProducto === Number(idProducto));
-    let mod = <h1>No existe el id </h1>
+    console.log(resultado)
+    //let mod = <h1>{"Se ha modificado producto exitosamente "}</h1>
+    alert("se ha modificado exitosamente")
     // validar si el producto con ese id existe
-    if (result != null) {
-      // Modificar informacion
-      // Encontrar el indece del producto en la lista
-      let objIndex = listProductos.findIndex((obj => obj.idProducto === Number(idProducto)));
-      listProductos[objIndex].nombre = String(nombre);
-      listProductos[objIndex].descripcion = String(descripcion);
-      listProductos[objIndex].precio = Number(precio);
-      listProductos[objIndex].stock = Number(stock);
-      mod =
-        <div>
-          <h1>{"Se ha modificado producto con id: " + result.idProducto}</h1>
-        </div>
-    }
-    setModificar(modificar = mod)
+    setModificar(modificar = <h1>se ha eliminado el producto</h1>)
+   
   }
+
+ 
+
+  // Eliminar producto
+  // Actualizar producto
+  const eliminarDatos = async (id) => {
+    //let url = "localhost:4000/producto/eliminar/" + id
+    const url = "http://localhost:4000/producto/eliminar/" + id
+    console.log(url)
+    const resultado = await axios.delete(url);
+    return resultado.data
+  }
+
+  async function eliminarInfo(){
+    var idProducto = document.getElementById("idProducto").value;
+    eliminarDatos(idProducto)
+    //let mod = <h1>{"Se ha eliminado producto exitosamente "}</h1>
+    alert("se ha eliminado exitosamente")
+    // validar si el producto con ese id existe
+    //setModificar(modificar = mod)
+    setModificar(modificar = <h1>se ha eliminado el producto</h1>)
+  }
+
+
+
 
 
 
