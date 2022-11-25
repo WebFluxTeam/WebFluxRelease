@@ -4,6 +4,7 @@ import Inicio from "./inicio";
 import listaVentas from '../historialVentas.json'
 import listProductos from '../listaProductos.json'
 import axios from 'axios';
+import Cliente from "./cliente";
 
 
 
@@ -103,13 +104,13 @@ function Admin() {
 
             <label class="labelpopup" for="start">Fecha inicial:</label>
 
-            <input id="startDate" className="inputpopup" class="btn btn-info" type="date" id="start" name="trip-start"
+            <input id="startDate" className="inputpopup" class="btn btn-info" type="date" name="trip-start"
               value="2022-11-12"
               min="2018-01-01" max="2030-12-31">
             </input>
 
             <label class="labelpopup" for="end">Fecha Final:</label>
-            <input id="endDate" className="inputpopup" class="btn btn-info" type="date" id="start" name="trip-start"
+            <input id="endDate" className="inputpopup" class="btn btn-info" type="date" name="trip-start"
               value="2022-11-12"
               min="2018-01-01" max="2030-12-31">
             </input>
@@ -164,7 +165,7 @@ function Admin() {
   //***********************************************************************
 
   function volver() {
-    setBarra(barra = <Inicio />)
+    setBarra(barra = <Cliente/>)
     setListar(listar = "")
     setModificar(modificar = "")
     setListarProductos(listarProductos = "")

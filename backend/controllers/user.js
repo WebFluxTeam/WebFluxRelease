@@ -16,7 +16,7 @@ const createUser= async (req, res = response) => {
     await user.save();
 
     res.status(201).json({
-        user,
+        user
     })
     } catch(error){
         res.status(500).json({
@@ -32,9 +32,11 @@ const listUser = async (req, res = response) => {
     const users = await User.find();
 
     console.log(users)
-    res.json(
-        users
-    )
+    res.status(200).json({
+        users,
+        token: 'test123'
+
+    })
 }
 
 const updateUser = async (req, res = response) => {

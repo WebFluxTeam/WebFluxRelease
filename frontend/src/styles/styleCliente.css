@@ -118,7 +118,10 @@ span {
 
 #wrapper-content {
 	background: rgba(255, 255, 255, 0);
-  top: 50%
+  top: 50%;
+  
+  /**Manupular popup*/
+  display: none
 }
 
 .open-seller {
