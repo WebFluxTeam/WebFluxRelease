@@ -101,22 +101,20 @@ function Admin() {
         </div>
         <div className="container3">
 
-          <div className="popup2">
+        <div className="popup2">
 
-            <label class="labelpopup" for="start">Fecha inicial:</label>
+          <label class="labelpopup" for="start">Fecha inicial:</label>
 
-            <input id="startDate" className="inputpopup" class="btn btn-info" type="date" name="trip-start"
-              value="2022-11-12"
-              min="2018-01-01" max="2030-12-31">
-            </input>
+          <input id="startDateV" className="inputpopup" class="btn btn-info" type="date" name="trip-start"
+            min="2018-01-01" max="2030-12-31">
+          </input>
 
-            <label class="labelpopup" for="end">Fecha Final:</label>
-            <input id="endDate" className="inputpopup" class="btn btn-info" type="date" name="trip-start"
-              value="2022-11-12"
-              min="2018-01-01" max="2030-12-31">
-            </input>
-            <button className="butt" onClick={buscarVentas}> Bucar  </button>
-          </div>
+          <label class="labelpopup" for="end">Fecha Final:</label>
+          <input id="endDateV" className="inputpopup" class="btn btn-info" type="date" name="trip-end"
+            min="2018-01-01" max="2030-12-31">
+          </input>
+          <button className="butt" onClick={buscarVentas}> Bucar  </button>
+        </div>
 
           <table class="center">
             <tr>
@@ -168,11 +166,20 @@ function Admin() {
 
 
 
-
+  var dataFind;
   async function buscarId(){
     let idVenta = document.getElementById("idVenta").value;
     let respuesta = await traerVenta(idVenta);
-    alert(`fecha: ${respuesta.fecha}\nprecio: ${respuesta.precio}\nproducto: ${respuesta.producto[0].nombre}`)
+    const productdetail = "";
+    for(let k=0; k <= respuesta.producto.length-1; k++){
+        let prod = respuesta.producto[k];
+        productdetail = productdetail + "\n nombre: "+prod.nombre +
+        "\n producto: "+prod.producto.precio +
+        "\n stock: "+prod.producto.stock +
+        "\n **************************************************** "
+    }
+    alert(`fecha: ${respuesta.fecha}\nprecio: ${respuesta.precio}\nproducto: ${productdetail}\n`)
+     dataFind = {"fecha": respuesta.fecha, "precio": respuesta.precio, "producto": respuesta.producto[0].nombre, "id": respuesta.idProducto}
   }
 
   // traer venta
@@ -187,11 +194,48 @@ function Admin() {
 
   // REVISAR 
   function buscarVentas(){
-    let fechaInicial = document.getElementById("startDate").value;
-    let fechaFinal = document.getElementById("endDate").value;
-    console.log("fecha inicial" + fechaInicial)
+    let fechaInicial = document.getElementById("startDateV").value;
+    let fechaFinal = document.getElementById("endDateV").value;
+    console.log("fecha inicial: " + fechaInicial)
     console.log("fecha final: " + fechaFinal)
-    traerVentas(fechaInicial, fechaFinal)
+    const ventas = traerVentas(fechaInicial, fechaFinal)
+    //const bodymsj = JSON.parse(ventas)
+    //console.log(`bodymsj::: ${ventas}`)
+
+    const printAddress = async () => {
+      const a = await ventas;
+      console.log(a);
+    };
+
+    const cast = Promise.resolve(ventas);
+        cast.then((value) => {
+          let all ="";
+            for(let j=0; j <= value.length-1 ; j++){
+              let tmp =  "";
+              for(let k=0; k <= value.length-1; k++){
+                if(value[j].producto.length > 0){
+                  tmp = tmp + "\n nombre: "+value[j].producto.nombre +
+                  "\n producto: "+value[j].producto.precio +
+                  "\n stock: "+value[j].producto.stock +
+                  "\n **************************************************** "
+                  
+                }
+              }
+              console.log(`Venta No. ${j} `);
+              console.log(`idVenta: ${value[j].idVenta}\nFecha: ${value[j].fecha}\nprecio: ${value[j].precio}\nproducto: ${value[j].producto[0]}`)
+              console.log(`---------------------------------------------------------`);
+
+              all = all + " Venta No. "+ j +" \n"+
+              "idVenta:"+ value[j].idVenta +"\nFecha: "+value[j].fecha + "\nprecio: "+value[j].precio+"\nproducto: "+ tmp +
+              "\n --------------------------------------------------------- \n"
+            }
+            alert(`✔️ ${all}`)
+      });
+   //alert(`✔️ ${datosVentas}`)
+    console.log(ventas)
+    /*alert(✔️ Resumen de ventas en el periodo elegido:\n
+    fecha: {ventas.fecha}\nprecio: {ventas.precio}\nproducto: {ventas.producto[0].nombre}
+    )*/
   }
 
 
@@ -226,16 +270,16 @@ function Admin() {
       <div className="divform">
         <label className="labelVentas" ><small><strong>REGISTRO DE PRODUCTOS</strong></small></label>
         <form className="rowform">
-          <label for="nombre" class="form-label">NOMBRE :</label>
-          <input className="formedit" type="text" id="nombre" placeholder="Nombre del producto.." />
-          <label for="imagen" class="form-label">RUTA IMAGEN :</label>
-          <input className="formedit" type="text" id="imagen" placeholder="Ingrese la ruta de la imagen.." />
-          <label for="descripcion" class="form-label">DESCRIPCIÓN :</label>
-          <input className="formedit" type="text" id="descripcion" placeholder="Descripción del producto.." />
-          <label for="precio" class="form-label">PRECIO :</label>
-          <input className="formedit" type="text" step="0.01" id="precio" placeholder="Costo del producto.." />
-          <label for="stock" class="form-label">UNIDADES DISPONIBLES :</label>
-          <input className="formedit" type="number" id="stock" placeholder="Cantidad disponible.." />
+          <label for="nombreR" class="form-label">NOMBRE :</label>
+          <input className="formedit" type="text" id="nombreR" placeholder="Nombre del producto.." />
+          <label for="imagenR" class="form-label">RUTA IMAGEN :</label>
+          <input className="formedit" type="text" id="imagenR" placeholder="Ingrese la ruta de la imagen.." />
+          <label for="descripcionR" class="form-label">DESCRIPCIÓN :</label>
+          <input className="formedit" type="text" id="descripcionR" placeholder="Descripción del producto.." />
+          <label for="precioR" class="form-label">PRECIO :</label>
+          <input className="formedit" type="number" step="0.01" id="precioR" placeholder="Costo del producto.." />
+          <label for="stockR" class="form-label">UNIDADES DISPONIBLES :</label>
+          <input className="formedit" type="number" id="stockR" placeholder="Cantidad disponible.." />
           <button className="butt" onClick={capturarInfoRegistrar}> REGISTRAR </button>
         </form>
       </div>
@@ -252,14 +296,17 @@ function Admin() {
   }
 
   async function capturarInfoRegistrar() {
-    let nombre = document.getElementById("nombre").value;
-    let descripcion = document.getElementById("descripcion").value;
-    let precio = document.getElementById("precio").value;
-    let stock = document.getElementById("stock").value;
-    const producto = { "nombre": String(nombre), "descripcion": String(descripcion), "precio": Number(precio), "stock": Number(stock) }
+    let nombreR = document.getElementById("nombreR").value;
+    let imagenR = document.getElementById("imagenR").value;
+    let descripcionR = document.getElementById("descripcionR").value;
+    let precioR = document.getElementById("precioR").value;
+    let stockR = document.getElementById("stockR").value;
+    const producto = {"nombre": String(nombreR), "imagen": String(imagenR), "descripcion": String(descripcionR), "precio": Number(precioR), "stock": Number(stockR) }
     registrarDatos(producto)
+    console.log("✔️ Producto "+nombreR+" registrado exitosamente ")  
+    console.log(producto)
     let mod =
-      <h1>{"Se ha registrado un producto: " + nombre}</h1>
+      <h1>{"Se ha registrado un producto: " + nombreR}</h1>
 
     setRegistrarProducto(registrarProducto = mod)
   }
@@ -268,7 +315,6 @@ function Admin() {
   // Funcion encargada de modificar un producto que se encuentra creado
   async function modificacion() {
     let resultado2 = await obtenerDatos()
-    console.log("resultado", resultado2)
 
     let mod =
       <>
@@ -276,25 +322,26 @@ function Admin() {
           <div className="divform">
             <label className="labelVentas" ><small><strong>MODIFICACIÓN DE PRODUCTOS</strong></small></label>
             <form className="rowform">
-              <label for="idProducto" class="form-label">ID DE PRODUCTO :</label>
+              <label for="idProducto" class="form-label" >ID DE PRODUCTO :</label>
               <select type="number" className="formedit" id="idProducto" min="1" placeholder="identificador del producto.."  onChange={() => actualizarCampos(resultado2)} required>
+              <option key="default">Seleccione una opción...</option>
                 {
-                resultado2.map(producto => (
-                  <option key={producto.idProducto}>
+                  resultado2.map(producto => (
+                  <option key={producto.idProducto} >
                   {producto.idProducto}
                   </option>
               ))}
               </select>
-              <label for="nombre" class="form-label">NOMBRE :</label>
-              <input type="text" className="formedit" id="nombre" placeholder="Nombre del producto.." defaultValue=""/> 
-              <label for="imagen" class="form-label">RUTA IMAGEN :</label>
-              <input className="formedit" type="text" id="imagen" placeholder="Ingrese la ruta de la imagen.." />
-              <label for="descripcion" class="form-label">DESCRIPCIÓN :</label>
-              <input type="text" className="formedit" id="descripcion" placeholder="descripcion del producto.." />
-              <label for="precio" class="form-label">PRECIO :</label>
-              <input type="text" className="formedit" step="0.01" id="precio" placeholder="Precio del producto.." />
-              <label for="stock" class="form-label">UNIDADES DISPONIBLES :</label>
-              <input type="number" className="formedit" id="stock" placeholder="Cantidad disponible del producto.." />
+              <label for="nombreP" class="form-label">NOMBRE :</label>
+              <input type="text" className="formedit" id="nombreP" placeholder="Nombre del producto.." defaultValue=""/> 
+              <label for="imagenP" class="form-label">RUTA IMAGEN :</label>
+              <input className="formedit" type="text" id="imagenP" placeholder="Ingrese la ruta de la imagen.." />
+              <label for="descripcionP" class="form-label">DESCRIPCIÓN :</label>
+              <input type="text" className="formedit" id="descripcionP" placeholder="descripcion del producto.." />
+              <label for="precioP" class="form-label">PRECIO :</label>
+              <input type="text" className="formedit" step="0.01" id="precioP" placeholder="Precio del producto.." />
+              <label for="stockP" class="form-label">UNIDADES DISPONIBLES :</label>
+              <input type="number" className="formedit" id="stockP" placeholder="Cantidad disponible del producto.." />
               <button className="butt" onClick={capturarInfo}> MODIFICAR  </button>
               <button className="butt" onClick={eliminarInfo}> ELIMINAR  </button>
             </form>
@@ -302,11 +349,13 @@ function Admin() {
           <div className="divform">
             <div className="heading"></div>
             <div aling='center' className="producto">
-              <div className="producto">
-                <h2> Nombre Producto </h2>
+              <div id="muestra" className="producto">
+                <input class="formeditTemp" id="nameMuestra"type="text" placeholder="Nombre" disabled/>
                 <a> <img id="imagen2" ></img> </a>
               </div>
-
+              <input class="formeditTemp" id="descripcionMuestra" type="text" placeholder="Descripción"  disabled/>
+              <input class="formeditTemp" id="precioMuestra" type="text" placeholder="Precio"  disabled />
+              <input class="formeditTemp" id="stockMuestra" type="text" placeholder="Stock"  disabled />
             </div>
           </div>
         </div>
@@ -321,31 +370,43 @@ function Admin() {
   // Actualizar campos
   function actualizarCampos(resultado2){
     var e = document.getElementById("idProducto");
-    //let objetoAuxiliar = {... resultado2}
     // obtener posicion del producto
     let objIndex = resultado2.findIndex((obj => obj.idProducto === String(e.value)));
     // capturar valores
-    let nombre = resultado2[objIndex].nombre
-    let imagen = resultado2[objIndex].imagen
-    let descripcion = resultado2[objIndex].descripcion
-    let precio = resultado2[objIndex].precio
-    let stock = resultado2[objIndex].stock
+      let nombre = ""
+      let imagen = ""
+      let descripcion = ""
+      let precio = ""
+      let stock = ""
+      console.log(objIndex )
+    if(objIndex >= 0){
+       nombre = resultado2[objIndex].nombre
+        imagen = resultado2[objIndex].imagen
+        descripcion = resultado2[objIndex].descripcion
+        precio = resultado2[objIndex].precio
+        stock = resultado2[objIndex].stock
+    
+  }
+
     // setiar valores
-    document.getElementById("nombre").value = nombre
-    document.getElementById("imagen").value = imagen
-    //document.getElementById("imagenp2").value = imagen
-    document.getElementById("descripcion").value = descripcion
-    document.getElementById("precio").value = precio
-    document.getElementById("stock").value = stock
-    //nombre.target.setAttribute("value",nombre);
+    document.getElementById("nombreP").value = nombre
+    document.getElementById("imagenP").value = imagen
+    document.getElementById("descripcionP").value = descripcion
+    document.getElementById("precioP").value = precio
+    document.getElementById("stockP").value = stock
     document.getElementById("imagen2").src=imagen;
+
+    document.getElementById("nameMuestra").value = nombre;
+    document.getElementById("descripcionMuestra").value = descripcion;
+    document.getElementById("precioMuestra").value = precio;
+    document.getElementById("stockMuestra").value = stock;
 
   }
 
 
   // Actualizar producto
   const actualizarDatos = async (producto) => {
-    console.log(producto.idProducto)
+    
     let url = "http://localhost:4000/producto/actualizar/" + producto.idProducto
     const resultado = await axios.put(url, producto);
     return resultado.data
@@ -353,16 +414,14 @@ function Admin() {
 
   // capturar informacion de formulario
   async function capturarInfo() {
-    // Capturar inforacion de formulario
-    //let resultado = await actualizarDatos()
-    var idProducto = document.getElementById("idProducto").value;
-    var nombre = document.getElementById("nombre").value;
-    var descripcion = document.getElementById("descripcion").value;
-    var imagen = document.getElementById("descripcion").imagen;
-    var precio = document.getElementById("precio").value;
-    var stock = document.getElementById("stock").value;
+    let idProducto = document.getElementById("idProducto").value;
+    let nombre = document.getElementById("nombreP").value;
+    let descripcion = document.getElementById("descripcionP").value;
+    let imagen = document.getElementById("imagenP").value;
+    let precio = document.getElementById("precioP").value;
+    let stock = document.getElementById("stockP").value;
     let objeto = {"idProducto": idProducto, "nombre": nombre, "descripcion": descripcion,  "imagen": imagen, "precio": precio, "stock": stock}
-    let resultado = await actualizarDatos(objeto)
+    var resultado = await actualizarDatos(objeto)
     // buscar producto
     console.log(resultado)
     //let mod = <h1>{"Se ha modificado producto exitosamente "}</h1>
@@ -372,14 +431,9 @@ function Admin() {
    
   }
 
- 
-
   // Eliminar producto
-  // Actualizar producto
   const eliminarDatos = async (id) => {
-    //let url = "localhost:4000/producto/eliminar/" + id
     const url = "http://localhost:4000/producto/eliminar/" + id
-    console.log(url)
     const resultado = await axios.delete(url);
     return resultado.data
   }
@@ -387,16 +441,10 @@ function Admin() {
   async function eliminarInfo(){
     var idProducto = document.getElementById("idProducto").value;
     eliminarDatos(idProducto)
-    //let mod = <h1>{"Se ha eliminado producto exitosamente "}</h1>
-    alert("se ha eliminado exitosamente")
-    // validar si el producto con ese id existe
-    //setModificar(modificar = mod)
-    setModificar(modificar = <h1>se ha eliminado el producto</h1>)
+    alert("✔️Producto eliminado exitosamente "+idProducto)
+
+    setModificar(modificar = <h1>Producto eliminado exitosamente</h1>)
   }
-
-
-
-
 
 
   // let ["nombre_estado", "metodo_permite_modificar_valores"] = useState("valor_inicial_variable")
